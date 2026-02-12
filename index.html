@@ -579,6 +579,53 @@
         .markdown-toolbar button i {
             font-size: 0.75rem;
         }
+
+        /* ========== 防截图/录屏专用样式 ========== */
+        .burn-blur {
+            filter: blur(12px) !important;
+            transition: filter 0.2s ease;
+        }
+        
+        .burn-watermark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            overflow: hidden;
+            color: rgba(255, 100, 100, 0.25);
+            font-size: 14px;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            word-break: break-all;
+            user-select: none;
+            line-height: 1.5;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            justify-content: flex-start;
+            opacity: 0.9;
+            text-shadow: 0 0 2px rgba(0,0,0,0.5);
+        }
+        
+        .burn-watermark span {
+            display: inline-block;
+            margin: 8px 12px;
+            animation: watermarkFloat 8s infinite alternate;
+            transform-origin: center;
+        }
+        
+        @keyframes watermarkFloat {
+            0% { transform: rotate(-2deg) scale(1); opacity: 0.2; }
+            100% { transform: rotate(2deg) scale(1.2); opacity: 0.4; }
+        }
+        
+        .share-result-container {
+            position: relative;
+        }
     </style>
 </head>
 
@@ -1424,6 +1471,152 @@
             document.getElementById('quickAccessBar').classList.remove('hidden');
         }
 
+        // ==================== 防截图/录屏专用函数 ====================
+        let antiScreenshotActive = false;
+        let watermarkInterval = null;
+
+        function applyAntiScreenshotProtection() {
+            const shareResultDiv = document.querySelector('.share-result-container');
+            if (!shareResultDiv) return;
+            if (antiScreenshotActive) return;
+            
+            // 1. 窗口失焦/聚焦时模糊/恢复
+            const onBlur = () => {
+                document.getElementById('burningContent')?.classList.add('burn-blur');
+            };
+            const onFocus = () => {
+                document.getElementById('burningContent')?.classList.remove('burn-blur');
+            };
+            window.addEventListener('blur', onBlur);
+            window.addEventListener('focus', onFocus);
+            
+            // 2. 页面可见性变化（切换到后台/锁屏）时模糊
+            const onVisibilityChange = () => {
+                if (document.hidden) {
+                    document.getElementById('burningContent')?.classList.add('burn-blur');
+                } else {
+                    document.getElementById('burningContent')?.classList.remove('burn-blur');
+                }
+            };
+            document.addEventListener('visibilitychange', onVisibilityChange);
+            
+            // 3. 阻止打印（Ctrl+P 等）
+            const onBeforePrint = (e) => {
+                e.preventDefault();
+                showToast('📵 该内容禁止打印', 'error');
+                return false;
+            };
+            window.addEventListener('beforeprint', onBeforePrint);
+            
+            // 4. 阻止部分截图快捷键（PrintScreen 无法完全阻止，但可弹窗警告）
+            const onKeyDown = (e) => {
+                // Ctrl+P
+                if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                    e.preventDefault();
+                    showToast('📵 禁止打印/截图', 'error');
+                    return false;
+                }
+                // PrintScreen 没有标准 key，部分浏览器支持 'PrintScreen' 或通过组合键
+                if (e.key === 'PrintScreen' || e.code === 'PrintScreen') {
+                    e.preventDefault();
+                    showToast('📵 禁止截图', 'error');
+                    return false;
+                }
+                // 阻止 Ctrl+Shift+I (DevTools) 与截图关联，但增加难度
+                if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'I') {
+                    e.preventDefault();
+                    return false;
+                }
+                // 阻止 Ctrl+U (查看源码)
+                if ((e.ctrlKey || e.metaKey) && e.key === 'u') {
+                    e.preventDefault();
+                    return false;
+                }
+            };
+            window.addEventListener('keydown', onKeyDown);
+            
+            // 5. 添加动态水印（防截图追溯）
+            const burningContentParent = shareResultDiv.querySelector('.text-left.p-6');
+            if (burningContentParent && !document.getElementById('burnWatermark')) {
+                const watermark = document.createElement('div');
+                watermark.id = 'burnWatermark';
+                watermark.className = 'burn-watermark';
+                
+                // 生成随机字符串 + 时间戳 + 会话标识
+                const sessionId = Math.random().toString(36).substring(2, 12);
+                const timestamp = new Date().toLocaleString('zh-CN', { hour12: false });
+                const texts = [];
+                for (let i = 0; i < 30; i++) {
+                    const randomChar = Math.random().toString(36).substring(2, 5);
+                    texts.push(`📵 CLOUDNOTES 绝密 · 截屏追溯 ${sessionId} · ${timestamp} · ${randomChar}`);
+                }
+                watermark.innerHTML = texts.map(t => `<span>${t}</span>`).join('');
+                
+                // 设置为绝对定位覆盖
+                burningContentParent.style.position = 'relative';
+                burningContentParent.appendChild(watermark);
+                
+                // 水印内容动态变化（每3秒局部刷新）
+                watermarkInterval = setInterval(() => {
+                    if (watermark) {
+                        const newTimestamp = new Date().toLocaleString('zh-CN', { hour12: false });
+                        const randomChars = Math.random().toString(36).substring(2, 8);
+                        const spans = watermark.querySelectorAll('span');
+                        if (spans.length > 0) {
+                            const idx = Math.floor(Math.random() * spans.length);
+                            spans[idx].textContent = `📵 截屏追溯 ${sessionId} · ${newTimestamp} · ${randomChars}`;
+                        }
+                    }
+                }, 3000);
+            }
+            
+            // 存储事件处理器以便移除
+            window.__burnBlurHandler = onBlur;
+            window.__burnFocusHandler = onFocus;
+            window.__burnVisibilityHandler = onVisibilityChange;
+            window.__burnPrintHandler = onBeforePrint;
+            window.__burnKeyHandler = onKeyDown;
+            
+            antiScreenshotActive = true;
+        }
+
+        function removeAntiScreenshotProtection() {
+            if (!antiScreenshotActive) return;
+            
+            // 移除事件监听
+            if (window.__burnBlurHandler) {
+                window.removeEventListener('blur', window.__burnBlurHandler);
+                window.removeEventListener('focus', window.__burnFocusHandler);
+            }
+            if (window.__burnVisibilityHandler) {
+                document.removeEventListener('visibilitychange', window.__burnVisibilityHandler);
+            }
+            if (window.__burnPrintHandler) {
+                window.removeEventListener('beforeprint', window.__burnPrintHandler);
+            }
+            if (window.__burnKeyHandler) {
+                window.removeEventListener('keydown', window.__burnKeyHandler);
+            }
+            
+            // 移除水印
+            const watermark = document.getElementById('burnWatermark');
+            if (watermark) watermark.remove();
+            if (watermarkInterval) clearInterval(watermarkInterval);
+            
+            // 移除模糊类
+            document.getElementById('burningContent')?.classList.remove('burn-blur');
+            
+            // 清除全局引用
+            window.__burnBlurHandler = null;
+            window.__burnFocusHandler = null;
+            window.__burnVisibilityHandler = null;
+            window.__burnPrintHandler = null;
+            window.__burnKeyHandler = null;
+            
+            antiScreenshotActive = false;
+        }
+
+        // ==================== 阅后即焚渲染（已移除返回主页按钮）====================
         function renderShareView() {
             app.innerHTML = `
             <div class="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
@@ -1431,13 +1624,6 @@
                     <div class="space-y-1">
                         <h1 class="text-4xl font-extrabold tracking-tighter bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">CloudNotes</h1>
                         <p class="text-[10px] uppercase tracking-[0.3em] text-orange-500 font-black">阅后即焚 | 分享解密</p>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <button onclick="window.location.href = window.location.origin + window.location.pathname" 
-                                class="text-xs text-slate-400 hover:text-white transition px-3 py-1 glass rounded-full" 
-                                title="返回主页">
-                            返回主页
-                        </button>
                     </div>
                 </header>
 
@@ -1453,7 +1639,7 @@
                             class="w-full share-gradient text-white py-5 rounded-2xl font-black uppercase tracking-widest shadow-xl hover:scale-[1.02] transition">
                         解密并销毁
                     </button>
-                    <div id="shareResult" class="mt-8 hidden">
+                    <div id="shareResult" class="mt-8 hidden share-result-container">
                         <div class="text-left p-6 bg-slate-950/50 rounded-2xl border border-orange-500/20 ring-1 ring-orange-500/10 shadow-inner leading-relaxed">
                             <div class="flex justify-between items-center mb-4">
                                 <span class="text-xs uppercase tracking-widest text-slate-400 font-bold">阅后即焚内容</span>
@@ -1462,7 +1648,7 @@
                                     <span>立即焚毁</span>
                                 </button>
                             </div>
-                            <div id="burningContent" class="markdown-preview relative"></div>
+                            <div id="burningContent" class="markdown-preview relative" style="user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none;"></div>
                             <div class="mt-4 pt-4 border-t border-orange-500/10 space-y-2">
                                 <div class="flex items-center justify-between">
                                     <div id="burnProgress" class="text-xs text-slate-500">
@@ -1503,6 +1689,20 @@
                         doUnlockShare();
                     }
                 });
+            }
+            
+            // 禁止复制阅后即焚内容（防止选择/复制）
+            const burningContent = document.getElementById('burningContent');
+            if (burningContent) {
+                burningContent.style.userSelect = 'none';
+                burningContent.style.webkitUserSelect = 'none';
+                burningContent.style.MozUserSelect = 'none';
+                burningContent.style.msUserSelect = 'none';
+                burningContent.addEventListener('copy', (e) => e.preventDefault());
+                burningContent.addEventListener('cut', (e) => e.preventDefault());
+                burningContent.addEventListener('contextmenu', (e) => e.preventDefault());
+                burningContent.addEventListener('selectstart', (e) => e.preventDefault());
+                burningContent.addEventListener('dragstart', (e) => e.preventDefault());
             }
         }
 
@@ -2726,6 +2926,9 @@ console.log('Hello');
                     unlockBtn.classList.remove('share-gradient');
                     unlockBtn.classList.add('bg-gray-600', 'cursor-not-allowed');
                     
+                    // ===== 新增：启动防截图/录屏防护 =====
+                    applyAntiScreenshotProtection();
+                    
                     // 准备焚毁动画（顺序焚毁）
                     prepareSequentialBurnAnimation();
                     
@@ -3002,6 +3205,9 @@ console.log('Hello');
 
         // 完成焚毁动画
         function completeBurnAnimation() {
+            // ===== 新增：焚毁完成，移除防截图防护 =====
+            removeAntiScreenshotProtection();
+            
             // 移除焚毁光标
             if (burnCursor) {
                 burnCursor.remove();
