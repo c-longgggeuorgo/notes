@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -2113,10 +2112,16 @@
             document.getElementById('settingsModal').classList.add('hidden'); 
         }
         
+        // ========== 修改点：自动补全 Worker 服务地址协议 ==========
         function saveSettings() {
             let apiUrl = document.getElementById('setApi').value.trim();
-    
-    // 移除尾部斜杠后统一添加
+            
+            // 智能补全协议：若不以 http:// 或 https:// 开头，则默认添加 https://
+            if (!/^https?:\/\//i.test(apiUrl)) {
+                apiUrl = 'https://' + apiUrl;
+            }
+            
+            // 移除尾部斜杠后统一添加
             apiUrl = apiUrl.replace(/\/+$/, '');
             
             localStorage.setItem('cf_notes_api', apiUrl);
