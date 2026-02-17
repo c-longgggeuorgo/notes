@@ -92,7 +92,8 @@
             margin-bottom: 1em;
         }
 
-        .markdown-preview ul, .markdown-preview ol {
+        .markdown-preview ul,
+        .markdown-preview ol {
             margin-left: 1.5em;
             margin-bottom: 1em;
         }
@@ -134,7 +135,8 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .markdown-preview th, .markdown-preview td {
+        .markdown-preview th,
+        .markdown-preview td {
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 0.75em;
             text-align: left;
@@ -202,21 +204,38 @@
         .hljs {
             background: transparent !important;
         }
-        
+
         .login-shake {
             animation: shake 0.5s ease-in-out;
         }
-        
+
         @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-            20%, 40%, 60%, 80% { transform: translateX(5px); }
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            10%,
+            30%,
+            50%,
+            70%,
+            90% {
+                transform: translateX(-5px);
+            }
+
+            20%,
+            40%,
+            60%,
+            80% {
+                transform: translateX(5px);
+            }
         }
-        
+
         .login-bg {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
         }
-        
+
         .loader {
             width: 48px;
             height: 48px;
@@ -229,40 +248,45 @@
         }
 
         @keyframes rotation {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
-        
+
         .share-gradient {
             background: linear-gradient(135deg, #f97316 0%, #dc2626 100%);
         }
-        
+
         .share-gradient:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 20px -5px rgba(220, 38, 38, 0.4);
         }
-        
+
         .nav-gradient {
             background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
         }
-        
+
         .nav-gradient:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 20px -5px rgba(124, 58, 237, 0.4);
         }
-        
+
         .nav-link-card {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid rgba(255, 255, 255, 0.05);
         }
-        
+
         .nav-link-card:hover {
             transform: translateY(-4px);
             border-color: rgba(139, 92, 246, 0.5);
             box-shadow: 0 10px 25px -5px rgba(139, 92, 246, 0.3);
             background: rgba(30, 41, 59, 0.9);
         }
-        
+
         .category-tag {
             display: inline-block;
             padding: 0.25em 0.75em;
@@ -272,15 +296,35 @@
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
-        
-        .icon-blue { color: #60a5fa; }
-        .icon-green { color: #34d399; }
-        .icon-purple { color: #a78bfa; }
-        .icon-red { color: #f87171; }
-        .icon-yellow { color: #fbbf24; }
-        .icon-pink { color: #f472b6; }
-        .icon-indigo { color: #818cf8; }
-        
+
+        .icon-blue {
+            color: #60a5fa;
+        }
+
+        .icon-green {
+            color: #34d399;
+        }
+
+        .icon-purple {
+            color: #a78bfa;
+        }
+
+        .icon-red {
+            color: #f87171;
+        }
+
+        .icon-yellow {
+            color: #fbbf24;
+        }
+
+        .icon-pink {
+            color: #f472b6;
+        }
+
+        .icon-indigo {
+            color: #818cf8;
+        }
+
         .quick-access-bar {
             position: fixed;
             bottom: 20px;
@@ -290,7 +334,7 @@
             flex-direction: column;
             gap: 10px;
         }
-        
+
         .quick-access-btn {
             width: 50px;
             height: 50px;
@@ -302,43 +346,44 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
-        
+
         .quick-access-btn:hover {
             transform: scale(1.1) rotate(5deg);
         }
-        
+
         .modal-enter {
             animation: modalEnter 0.3s ease-out;
         }
-        
+
         @keyframes modalEnter {
             from {
                 opacity: 0;
                 transform: scale(0.9) translateY(-20px);
             }
+
             to {
                 opacity: 1;
                 transform: scale(1) translateY(0);
             }
         }
-        
+
         .nav-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 1.5rem;
         }
-        
+
         @media (max-width: 768px) {
             .nav-grid {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
                 gap: 1rem;
             }
-            
+
             .quick-access-bar {
                 bottom: 15px;
                 right: 15px;
             }
-            
+
             .quick-access-btn {
                 width: 45px;
                 height: 45px;
@@ -351,50 +396,50 @@
             transition: all 0.3s ease;
             border: 1px solid rgba(59, 130, 246, 0.2);
         }
-        
+
         .toggle-btn:hover {
             border-color: rgba(59, 130, 246, 0.4);
             background: rgba(59, 130, 246, 0.1);
         }
-        
+
         .toggle-btn i {
             transition: transform 0.3s ease;
         }
-        
+
         .toggle-btn.expanded i {
             transform: rotate(180deg);
         }
-        
+
         /* 字符顺序消失动画相关样式 */
         .burning-text {
             position: relative;
             transition: all 0.3s ease;
         }
-        
+
         .burning-char {
             display: inline-block;
             transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
         }
-        
+
         .char-burning {
             opacity: 0.1;
             transform: translateY(8px) scale(0.85);
             filter: blur(1.5px);
             color: #ff6b6b !important;
         }
-        
+
         .char-removed {
             opacity: 0;
             visibility: hidden;
             transform: translateY(15px) scale(0.7);
         }
-        
+
         .current-burning {
             position: relative;
             z-index: 10;
         }
-        
+
         .current-burning::after {
             content: '';
             position: absolute;
@@ -408,18 +453,19 @@
             animation: glow 0.8s ease-in-out infinite alternate;
             opacity: 0.5;
         }
-        
+
         @keyframes glow {
             from {
                 opacity: 0.3;
                 box-shadow: 0 0 5px #ff6b6b;
             }
+
             to {
                 opacity: 0.6;
                 box-shadow: 0 0 10px #ffa500, 0 0 20px #ff6b6b;
             }
         }
-        
+
         .fire-trail {
             position: absolute;
             width: 3px;
@@ -431,18 +477,19 @@
             box-shadow: 0 0 6px #ff6b6b;
             animation: fireTrail 0.8s ease-out forwards;
         }
-        
+
         @keyframes fireTrail {
             0% {
                 transform: translate(0, 0) scale(1);
                 opacity: 1;
             }
+
             100% {
                 transform: translate(var(--tx, 0), var(--ty, -20px)) scale(0.3);
                 opacity: 0;
             }
         }
-        
+
         .burn-progress-bar {
             height: 4px;
             background: linear-gradient(90deg, #dc2626, #f97316);
@@ -450,7 +497,7 @@
             transition: width 0.3s ease;
             margin-top: 4px;
         }
-        
+
         .burn-notification {
             position: fixed;
             top: 20px;
@@ -467,18 +514,19 @@
             align-items: center;
             gap: 10px;
         }
-        
+
         @keyframes notificationSlide {
             from {
                 transform: translateX(100%);
                 opacity: 0;
             }
+
             to {
                 transform: translateX(0);
                 opacity: 1;
             }
         }
-        
+
         .burn-cursor {
             position: absolute;
             width: 2px;
@@ -488,19 +536,27 @@
             pointer-events: none;
             z-index: 50;
         }
-        
+
         @keyframes cursorBlink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
+
+            0%,
+            50% {
+                opacity: 1;
+            }
+
+            51%,
+            100% {
+                opacity: 0;
+            }
         }
-        
+
         .typewriter-effect {
             overflow: hidden;
             white-space: nowrap;
             margin: 0 auto;
             letter-spacing: 0.15em;
         }
-        
+
         /* Toast 通知样式 */
         .toast {
             position: fixed;
@@ -519,32 +575,32 @@
             opacity: 0;
             transition: all 0.3s ease;
         }
-        
+
         .toast.show {
             transform: translateY(0);
             opacity: 1;
         }
-        
+
         .toast.success {
             background: linear-gradient(135deg, #10b981, #059669);
         }
-        
+
         .toast.error {
             background: linear-gradient(135deg, #ef4444, #dc2626);
         }
-        
+
         .toast.info {
             background: linear-gradient(135deg, #3b82f6, #2563eb);
         }
-        
+
         .share-btn {
             transition: all 0.3s ease;
         }
-        
+
         .share-btn:hover {
             transform: translateY(-2px);
         }
-        
+
         /* Markdown工具栏样式 */
         .markdown-toolbar {
             display: flex;
@@ -555,7 +611,7 @@
             border-radius: 0.75rem;
             margin-bottom: 1rem;
         }
-        
+
         .markdown-toolbar button {
             padding: 0.5rem 0.75rem;
             background: rgba(30, 41, 59, 0.7);
@@ -569,62 +625,21 @@
             align-items: center;
             gap: 0.25rem;
         }
-        
+
         .markdown-toolbar button:hover {
             background: rgba(59, 130, 246, 0.2);
             border-color: rgba(59, 130, 246, 0.3);
             color: #60a5fa;
         }
-        
+
         .markdown-toolbar button i {
             font-size: 0.75rem;
         }
 
-        /* ========== 防截图/录屏专用样式 ========== */
+        /* ========== 防截图/录屏专用样式（保留模糊，移除水印） ========== */
         .burn-blur {
             filter: blur(12px) !important;
             transition: filter 0.2s ease;
-        }
-        
-        .burn-watermark {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 999;
-            overflow: hidden;
-            color: rgba(255, 100, 100, 0.25);
-            font-size: 14px;
-            font-weight: bold;
-            font-family: 'Courier New', monospace;
-            white-space: pre-wrap;
-            word-break: break-all;
-            user-select: none;
-            line-height: 1.5;
-            display: flex;
-            flex-wrap: wrap;
-            align-content: flex-start;
-            justify-content: flex-start;
-            opacity: 0.9;
-            text-shadow: 0 0 2px rgba(0,0,0,0.5);
-        }
-        
-        .burn-watermark span {
-            display: inline-block;
-            margin: 8px 12px;
-            animation: watermarkFloat 8s infinite alternate;
-            transform-origin: center;
-        }
-        
-        @keyframes watermarkFloat {
-            0% { transform: rotate(-2deg) scale(1); opacity: 0.2; }
-            100% { transform: rotate(2deg) scale(1.2); opacity: 0.4; }
-        }
-        
-        .share-result-container {
-            position: relative;
         }
     </style>
 </head>
@@ -632,7 +647,7 @@
 <body class="min-h-screen selection:bg-blue-500/30">
     <!-- Toast 通知容器 -->
     <div id="toastContainer"></div>
-    
+
     <!-- 认证模态框 -->
     <div id="authModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 login-bg hidden">
         <div class="glass w-full max-w-md p-10 rounded-[2.5rem] shadow-2xl space-y-8">
@@ -643,33 +658,33 @@
                     <p class="text-slate-400 leading-relaxed text-sm">私有加密笔记与导航系统<br>请输入访问密码以继续</p>
                 </div>
             </div>
-            
+
             <div class="space-y-6">
                 <div class="space-y-3">
                     <label class="text-xs uppercase tracking-widest text-slate-400 font-bold ml-1">
                         访问密码
                         <span id="attemptsCount" class="text-rose-500 text-xs ml-2">剩余尝试次数: 5</span>
                     </label>
-                    <input id="authPassword" type="password" 
-                           class="w-full bg-slate-900/70 border border-slate-700 p-5 rounded-2xl outline-none focus:ring-2 ring-blue-500/50 text-center font-mono text-lg"
-                           placeholder="请输入密码"
-                           autocomplete="off"
-                           onkeydown="if(event.key === 'Enter') checkPassword()">
+                    <input id="authPassword" type="password"
+                        class="w-full bg-slate-900/70 border border-slate-700 p-5 rounded-2xl outline-none focus:ring-2 ring-blue-500/50 text-center font-mono text-lg"
+                        placeholder="请输入密码"
+                        autocomplete="off"
+                        onkeydown="if(event.key === 'Enter') checkPassword()">
                     <p class="text-xs text-slate-500 text-center">
                         提示：请联系管理员获取访问密码
                     </p>
                 </div>
-                
+
                 <button onclick="checkPassword()" id="verifyBtn"
-                        class="w-full gradient-btn text-white py-5 rounded-2xl font-black tracking-widest uppercase text-sm shadow-xl hover:shadow-2xl transition-all">
+                    class="w-full gradient-btn text-white py-5 rounded-2xl font-black tracking-widest uppercase text-sm shadow-xl hover:shadow-2xl transition-all">
                     验证身份
                 </button>
-                
+
                 <div id="loadingSpinner" class="hidden text-center py-4">
                     <div class="loader mx-auto"></div>
                     <p class="text-slate-400 mt-4 text-sm">验证中...</p>
                 </div>
-                
+
                 <div class="pt-6 border-t border-white/5 text-center">
                     <p class="text-xs text-slate-500">
                         🔒 安全提示：请勿在公共设备上保存密码
@@ -728,17 +743,18 @@
     <!-- 编辑笔记模态框 -->
     <div id="editModal"
         class="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center hidden p-4">
-        <div class="glass w-full max-w-4xl p-8 rounded-[2.5rem] shadow-2xl space-y-6 max-h-[95vh] overflow-hidden flex flex-col modal-enter">
+        <div
+            class="glass w-full max-w-4xl p-8 rounded-[2.5rem] shadow-2xl space-y-6 max-h-[95vh] overflow-hidden flex flex-col modal-enter">
             <h2 class="text-2xl font-extrabold tracking-tight flex items-center gap-2">
                 <span class="text-blue-400">✏️</span> 编辑笔记
                 <span id="editNoteId" class="text-sm text-slate-400 ml-2 font-mono"></span>
             </h2>
-            
+
             <div class="flex gap-2 mb-4">
                 <button onclick="switchTab('edit')" class="tab-button active" id="editTabBtn">编辑模式</button>
                 <button onclick="switchTab('preview')" class="tab-button" id="previewTabBtn">预览模式</button>
             </div>
-            
+
             <div class="space-y-4 flex-1 overflow-hidden flex flex-col min-h-0">
                 <div id="editTab" class="flex-1 flex flex-col min-h-0">
                     <div class="markdown-toolbar">
@@ -781,19 +797,21 @@
                         <button onclick="insertMarkdown('---\n', '')" title="分割线">
                             <i class="fas fa-minus"></i>
                         </button>
-                        <button onclick="insertMarkdown('| 表头 | 表头 |\n|------|------|\n| 内容 | 内容 |', '')" title="表格">
+                        <button onclick="insertMarkdown('| 表头 | 表头 |\n|------|------|\n| 内容 | 内容 |', '')"
+                            title="表格">
                             <i class="fas fa-table"></i>
                         </button>
                         <button onclick="insertMarkdown('- [ ] ', '任务项')" title="任务列表">
                             <i class="fas fa-tasks"></i>
                         </button>
                     </div>
-                    
-                    <div class="flex-1 min-h-0 border border-slate-800 rounded-2xl overflow-hidden bg-slate-950/50 relative">
-                        <textarea id="editNoteContent" 
+
+                    <div
+                        class="flex-1 min-h-0 border border-slate-800 rounded-2xl overflow-hidden bg-slate-950/50 relative">
+                        <textarea id="editNoteContent"
                             class="w-full h-full bg-transparent p-5 outline-none text-sm transition-all resize-none leading-relaxed font-mono min-h-[45vh] border-0"
                             placeholder="# 标题&#10;&#10;## 二级标题&#10;&#10;- 列表项&#10;- 另一个列表项&#10;&#10;**粗体** *斜体* &#10;&#10;```javascript&#10;// 代码块&#10;console.log('Hello');&#10;```&#10;&#10;> 引用内容&#10;&#10;| 表头1 | 表头2 |&#10;|--------|--------|&#10;| 单元格1 | 单元格2 |"></textarea>
-                        
+
                         <div class="absolute bottom-3 right-4">
                             <div class="text-xs text-slate-500 bg-slate-900/70 px-2 py-1 rounded">
                                 <span id="editCharCount">0</span> 字符
@@ -801,17 +819,18 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div id="previewTab" class="flex-1 overflow-y-auto hidden min-h-0">
                     <div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold ml-1 mb-2 block">
                         Markdown 预览
                     </div>
-                    <div id="markdownPreview" class="markdown-preview p-5 bg-slate-950/50 border border-slate-800 rounded-2xl flex-1 overflow-y-auto min-h-[60vh]">
+                    <div id="markdownPreview"
+                        class="markdown-preview p-5 bg-slate-950/50 border border-slate-800 rounded-2xl flex-1 overflow-y-auto min-h-[60vh]">
                         <!-- 预览内容将通过JS动态填充 -->
                     </div>
                 </div>
             </div>
-            
+
             <div class="flex gap-3 pt-6 border-t border-white/5">
                 <button onclick="closeEdit()"
                     class="flex-1 py-4 text-slate-400 font-semibold rounded-2xl hover:bg-slate-800 transition">
@@ -822,7 +841,7 @@
                     保存更改
                 </button>
             </div>
-            
+
             <div class="pt-4 border-t border-white/5 text-xs text-slate-500">
                 <p class="flex items-center gap-2">
                     <span class="text-yellow-400">⚠️</span>
@@ -839,28 +858,28 @@
             <h2 class="text-2xl font-extrabold tracking-tight flex items-center gap-2">
                 <span class="text-blue-400">📝</span> 快速添加笔记
             </h2>
-            
+
             <div class="space-y-4">
                 <div>
                     <label class="text-[10px] uppercase tracking-widest text-slate-400 font-bold ml-1 mb-2 block">
                         解密主密码
                     </label>
-                    <input id="quickMainPw" type="password" placeholder="输入主密码以加密" 
+                    <input id="quickMainPw" type="password" placeholder="输入主密码以加密"
                         class="w-full bg-slate-950/50 border border-slate-800 p-4 rounded-2xl outline-none focus:ring-2 ring-blue-500/50 transition-all font-mono">
                 </div>
-                
+
                 <div>
                     <label class="text-[10px] uppercase tracking-widest text-slate-400 font-bold ml-1 mb-2 block">
                         笔记内容
                     </label>
-                    <textarea id="quickNoteInput" placeholder="输入笔记内容..." 
+                    <textarea id="quickNoteInput" placeholder="输入笔记内容..."
                         class="w-full bg-slate-950/50 border border-slate-800 p-4 h-40 rounded-2xl outline-none focus:bg-slate-950 transition-all resize-none leading-relaxed"></textarea>
                     <div class="flex items-center gap-2 text-xs text-slate-500 mt-2">
                         <span id="quickNoteCharCount">0</span> 字符
                     </div>
                 </div>
             </div>
-            
+
             <div class="flex gap-3">
                 <button onclick="closeAddNoteModal()"
                     class="flex-1 py-4 text-slate-400 font-semibold rounded-2xl hover:bg-slate-800 transition">
@@ -881,64 +900,81 @@
             <h2 class="text-2xl font-extrabold tracking-tight flex items-center gap-2">
                 <span class="text-purple-400">🔗</span> 添加导航链接
             </h2>
-            
+
             <div class="space-y-4">
                 <div>
                     <label class="text-[10px] uppercase tracking-widest text-slate-400 font-bold ml-1 mb-2 block">
                         链接标题
                     </label>
-                    <input id="navLinkTitle" type="text" placeholder="例如：GitHub" 
+                    <input id="navLinkTitle" type="text" placeholder="例如：GitHub"
                         class="w-full bg-slate-950/50 border border-slate-800 p-4 rounded-2xl outline-none focus:ring-2 ring-purple-500/50 transition-all">
                 </div>
-                
+
                 <div>
                     <label class="text-[10px] uppercase tracking-widest text-slate-400 font-bold ml-1 mb-2 block">
                         链接地址
                     </label>
-                    <input id="navLinkUrl" type="text" placeholder="https://..." 
+                    <input id="navLinkUrl" type="text" placeholder="https://..."
                         class="w-full bg-slate-950/50 border border-slate-800 p-4 rounded-2xl outline-none focus:ring-2 ring-purple-500/50 transition-all font-mono text-sm">
                 </div>
-                
+
                 <div>
                     <label class="text-[10px] uppercase tracking-widest text-slate-400 font-bold ml-1 mb-2 block">
                         分类标签
                     </label>
                     <div class="flex flex-wrap gap-2 mb-2">
-                        <button onclick="setNavCategory('开发工具')" class="px-3 py-1 bg-blue-900/30 text-blue-400 rounded-lg hover:bg-blue-800/50 transition text-xs">开发工具</button>
-                        <button onclick="setNavCategory('日常效率')" class="px-3 py-1 bg-green-900/30 text-green-400 rounded-lg hover:bg-green-800/50 transition text-xs">日常效率</button>
-                        <button onclick="setNavCategory('设计资源')" class="px-3 py-1 bg-purple-900/30 text-purple-400 rounded-lg hover:bg-purple-800/50 transition text-xs">设计资源</button>
-                        <button onclick="setNavCategory('学习资源')" class="px-3 py-1 bg-yellow-900/30 text-yellow-400 rounded-lg hover:bg-yellow-800/50 transition text-xs">学习资源</button>
-                        <button onclick="setNavCategory('社交娱乐')" class="px-3 py-1 bg-pink-900/30 text-pink-400 rounded-lg hover:bg-pink-800/50 transition text-xs">社交娱乐</button>
+                        <button onclick="setNavCategory('开发工具')"
+                            class="px-3 py-1 bg-blue-900/30 text-blue-400 rounded-lg hover:bg-blue-800/50 transition text-xs">开发工具</button>
+                        <button onclick="setNavCategory('日常效率')"
+                            class="px-3 py-1 bg-green-900/30 text-green-400 rounded-lg hover:bg-green-800/50 transition text-xs">日常效率</button>
+                        <button onclick="setNavCategory('设计资源')"
+                            class="px-3 py-1 bg-purple-900/30 text-purple-400 rounded-lg hover:bg-purple-800/50 transition text-xs">设计资源</button>
+                        <button onclick="setNavCategory('学习资源')"
+                            class="px-3 py-1 bg-yellow-900/30 text-yellow-400 rounded-lg hover:bg-yellow-800/50 transition text-xs">学习资源</button>
+                        <button onclick="setNavCategory('社交娱乐')"
+                            class="px-3 py-1 bg-pink-900/30 text-pink-400 rounded-lg hover:bg-pink-800/50 transition text-xs">社交娱乐</button>
                     </div>
-                    <input id="navLinkCategory" type="text" placeholder="自定义分类或选择上方标签" 
+                    <input id="navLinkCategory" type="text" placeholder="自定义分类或选择上方标签"
                         class="w-full bg-slate-950/50 border border-slate-800 p-4 rounded-2xl outline-none focus:ring-2 ring-purple-500/50 transition-all">
                 </div>
-                
+
                 <div>
                     <label class="text-[10px] uppercase tracking-widest text-slate-400 font-bold ml-1 mb-2 block">
                         图标选择
                     </label>
                     <div class="flex flex-wrap gap-3 mb-2">
-                        <button onclick="setNavIcon('fas fa-globe', 'icon-blue')" class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700 transition"><i class="fas fa-globe icon-blue"></i></button>
-                        <button onclick="setNavIcon('fas fa-code', 'icon-green')" class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700 transition"><i class="fas fa-code icon-green"></i></button>
-                        <button onclick="setNavIcon('fas fa-tools', 'icon-yellow')" class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700 transition"><i class="fas fa-tools icon-yellow"></i></button>
-                        <button onclick="setNavIcon('fas fa-palette', 'icon-purple')" class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700 transition"><i class="fas fa-palette icon-purple"></i></button>
-                        <button onclick="setNavIcon('fas fa-book', 'icon-indigo')" class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700 transition"><i class="fas fa-book icon-indigo"></i></button>
-                        <button onclick="setNavIcon('fas fa-film', 'icon-pink')" class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700 transition"><i class="fas fa-film icon-pink"></i></button>
+                        <button onclick="setNavIcon('fas fa-globe', 'icon-blue')"
+                            class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700 transition"><i
+                                class="fas fa-globe icon-blue"></i></button>
+                        <button onclick="setNavIcon('fas fa-code', 'icon-green')"
+                            class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700 transition"><i
+                                class="fas fa-code icon-green"></i></button>
+                        <button onclick="setNavIcon('fas fa-tools', 'icon-yellow')"
+                            class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700 transition"><i
+                                class="fas fa-tools icon-yellow"></i></button>
+                        <button onclick="setNavIcon('fas fa-palette', 'icon-purple')"
+                            class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700 transition"><i
+                                class="fas fa-palette icon-purple"></i></button>
+                        <button onclick="setNavIcon('fas fa-book', 'icon-indigo')"
+                            class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700 transition"><i
+                                class="fas fa-book icon-indigo"></i></button>
+                        <button onclick="setNavIcon('fas fa-film', 'icon-pink')"
+                            class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700 transition"><i
+                                class="fas fa-film icon-pink"></i></button>
                     </div>
                     <input id="navLinkIcon" type="hidden" value="fas fa-globe">
                     <input id="navLinkIconColor" type="hidden" value="icon-blue">
                 </div>
-                
+
                 <div>
                     <label class="text-[10px] uppercase tracking-widest text-slate-400 font-bold ml-1 mb-2 block">
                         描述（可选）
                     </label>
-                    <textarea id="navLinkDescription" placeholder="链接的简要描述..." 
+                    <textarea id="navLinkDescription" placeholder="链接的简要描述..."
                         class="w-full bg-slate-950/50 border border-slate-800 p-4 h-24 rounded-2xl outline-none focus:bg-slate-950 transition-all resize-none"></textarea>
                 </div>
             </div>
-            
+
             <div class="flex gap-3">
                 <button onclick="closeAddNavLinkModal()"
                     class="flex-1 py-4 text-slate-400 font-semibold rounded-2xl hover:bg-slate-800 transition">
@@ -960,66 +996,83 @@
                 <span class="text-purple-400">✏️</span> 编辑导航链接
                 <span id="editNavLinkId" class="text-sm text-slate-400 ml-2 font-mono"></span>
             </h2>
-            
+
             <div class="space-y-4">
                 <div>
                     <label class="text-[10px] uppercase tracking-widest text-slate-400 font-bold ml-1 mb-2 block">
                         链接标题
                     </label>
-                    <input id="editNavLinkTitle" type="text" placeholder="例如：GitHub" 
+                    <input id="editNavLinkTitle" type="text" placeholder="例如：GitHub"
                         class="w-full bg-slate-950/50 border border-slate-800 p-4 rounded-2xl outline-none focus:ring-2 ring-purple-500/50 transition-all">
                 </div>
-                
+
                 <div>
                     <label class="text-[10px] uppercase tracking-widest text-slate-400 font-bold ml-1 mb-2 block">
                         链接地址
                     </label>
-                    <input id="editNavLinkUrl" type="text" placeholder="https://..." 
+                    <input id="editNavLinkUrl" type="text" placeholder="https://..."
                         class="w-full bg-slate-950/50 border border-slate-800 p-4 rounded-2xl outline-none focus:ring-2 ring-purple-500/50 transition-all font-mono text-sm">
                 </div>
-                
+
                 <div>
                     <label class="text-[10px] uppercase tracking-widest text-slate-400 font-bold ml-1 mb-2 block">
                         分类标签
                     </label>
                     <div class="flex flex-wrap gap-2 mb-2">
-                        <button onclick="setEditNavCategory('开发工具')" class="px-3 py-1 bg-blue-900/30 text-blue-400 rounded-lg hover:bg-blue-800/50 transition text-xs">开发工具</button>
-                        <button onclick="setEditNavCategory('日常效率')" class="px-3 py-1 bg-green-900/30 text-green-400 rounded-lg hover:bg-green-800/50 transition text-xs">日常效率</button>
-                        <button onclick="setEditNavCategory('设计资源')" class="px-3 py-1 bg-purple-900/30 text-purple-400 rounded-lg hover:bg-purple-800/50 transition text-xs">设计资源</button>
-                        <button onclick="setEditNavCategory('学习资源')" class="px-3 py-1 bg-yellow-900/30 text-yellow-400 rounded-lg hover:bg-yellow-800/50 transition text-xs">学习资源</button>
-                        <button onclick="setEditNavCategory('社交娱乐')" class="px-3 py-1 bg-pink-900/30 text-pink-400 rounded-lg hover:bg-pink-800/50 transition text-xs">社交娱乐</button>
+                        <button onclick="setEditNavCategory('开发工具')"
+                            class="px-3 py-1 bg-blue-900/30 text-blue-400 rounded-lg hover:bg-blue-800/50 transition text-xs">开发工具</button>
+                        <button onclick="setEditNavCategory('日常效率')"
+                            class="px-3 py-1 bg-green-900/30 text-green-400 rounded-lg hover:bg-green-800/50 transition text-xs">日常效率</button>
+                        <button onclick="setEditNavCategory('设计资源')"
+                            class="px-3 py-1 bg-purple-900/30 text-purple-400 rounded-lg hover:bg-purple-800/50 transition text-xs">设计资源</button>
+                        <button onclick="setEditNavCategory('学习资源')"
+                            class="px-3 py-1 bg-yellow-900/30 text-yellow-400 rounded-lg hover:bg-yellow-800/50 transition text-xs">学习资源</button>
+                        <button onclick="setEditNavCategory('社交娱乐')"
+                            class="px-3 py-1 bg-pink-900/30 text-pink-400 rounded-lg hover:bg-pink-800/50 transition text-xs">社交娱乐</button>
                     </div>
-                    <input id="editNavLinkCategory" type="text" placeholder="自定义分类或选择上方标签" 
+                    <input id="editNavLinkCategory" type="text" placeholder="自定义分类或选择上方标签"
                         class="w-full bg-slate-950/50 border border-slate-800 p-4 rounded-2xl outline-none focus:ring-2 ring-purple-500/50 transition-all">
                 </div>
-                
+
                 <div>
                     <label class="text-[10px] uppercase tracking-widest text-slate-400 font-bold ml-1 mb-2 block">
                         图标选择
                     </label>
                     <div class="flex flex-wrap gap-3 mb-2">
-                        <button onclick="setEditNavIcon('fas fa-globe', 'icon-blue')" class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700 transition"><i class="fas fa-globe icon-blue"></i></button>
-                        <button onclick="setEditNavIcon('fas fa-code', 'icon-green')" class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700 transition"><i class="fas fa-code icon-green"></i></button>
-                        <button onclick="setEditNavIcon('fas fa-tools', 'icon-yellow')" class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700 transition"><i class="fas fa-tools icon-yellow"></i></button>
-                        <button onclick="setEditNavIcon('fas fa-palette', 'icon-purple')" class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700 transition"><i class="fas fa-palette icon-purple"></i></button>
-                        <button onclick="setEditNavIcon('fas fa-book', 'icon-indigo')" class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700 transition"><i class="fas fa-book icon-indigo"></i></button>
-                        <button onclick="setEditNavIcon('fas fa-film', 'icon-pink')" class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700 transition"><i class="fas fa-film icon-pink"></i></button>
+                        <button onclick="setEditNavIcon('fas fa-globe', 'icon-blue')"
+                            class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700 transition"><i
+                                class="fas fa-globe icon-blue"></i></button>
+                        <button onclick="setEditNavIcon('fas fa-code', 'icon-green')"
+                            class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700 transition"><i
+                                class="fas fa-code icon-green"></i></button>
+                        <button onclick="setEditNavIcon('fas fa-tools', 'icon-yellow')"
+                            class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700 transition"><i
+                                class="fas fa-tools icon-yellow"></i></button>
+                        <button onclick="setEditNavIcon('fas fa-palette', 'icon-purple')"
+                            class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700 transition"><i
+                                class="fas fa-palette icon-purple"></i></button>
+                        <button onclick="setEditNavIcon('fas fa-book', 'icon-indigo')"
+                            class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700 transition"><i
+                                class="fas fa-book icon-indigo"></i></button>
+                        <button onclick="setEditNavIcon('fas fa-film', 'icon-pink')"
+                            class="p-2 bg-slate-800 rounded-lg hover:bg-slate-700 transition"><i
+                                class="fas fa-film icon-pink"></i></button>
                     </div>
                     <div id="editNavIconPreview" class="text-center py-2">
                     </div>
                     <input id="editNavLinkIcon" type="hidden">
                     <input id="editNavLinkIconColor" type="hidden">
                 </div>
-                
+
                 <div>
                     <label class="text-[10px] uppercase tracking-widest text-slate-400 font-bold ml-1 mb-2 block">
                         描述（可选）
                     </label>
-                    <textarea id="editNavLinkDescription" placeholder="链接的简要描述..." 
+                    <textarea id="editNavLinkDescription" placeholder="链接的简要描述..."
                         class="w-full bg-slate-950/50 border border-slate-800 p-4 h-24 rounded-2xl outline-none focus:bg-slate-950 transition-all resize-none"></textarea>
                 </div>
             </div>
-            
+
             <div class="flex gap-3">
                 <button onclick="closeEditNavLinkModal()"
                     class="flex-1 py-4 text-slate-400 font-semibold rounded-2xl hover:bg-slate-800 transition">
@@ -1030,9 +1083,10 @@
                     更新链接
                 </button>
             </div>
-            
+
             <div class="pt-4 border-t border-white/5">
-                <button onclick="confirmDeleteNavLink()" class="w-full py-3 bg-rose-900/30 text-rose-400 rounded-2xl hover:bg-rose-800/50 transition font-semibold">
+                <button onclick="confirmDeleteNavLink()"
+                    class="w-full py-3 bg-rose-900/30 text-rose-400 rounded-2xl hover:bg-rose-800/50 transition font-semibold">
                     🗑️ 删除此链接
                 </button>
             </div>
@@ -1044,7 +1098,11 @@
         const urlParams = new URLSearchParams(window.location.search);
         let apiFromUrl = urlParams.get('api');
         const cfgFromUrl = urlParams.get('cfg');
-        if (cfgFromUrl) { try { apiFromUrl = atob(cfgFromUrl); } catch (e) { } }
+        if (cfgFromUrl) {
+            try {
+                apiFromUrl = atob(cfgFromUrl);
+            } catch (e) {}
+        }
         const shareId = urlParams.get('share');
 
         let API_URL = apiFromUrl || localStorage.getItem('cf_notes_api') || "";
@@ -1052,7 +1110,7 @@
 
         let currentEditId = null;
         let currentEditNavLinkId = null;
-        
+
         let notesCache = {};
         let navLinksCache = {};
         let currentView = 'notes';
@@ -1081,24 +1139,40 @@
         async function getK(pw) {
             const enc = new TextEncoder();
             const hash = await crypto.subtle.digest('SHA-256', enc.encode(pw));
-            return await crypto.subtle.importKey('raw', hash, { name: 'AES-GCM' }, false, ['encrypt', 'decrypt']);
+            return await crypto.subtle.importKey('raw', hash, {
+                name: 'AES-GCM'
+            }, false, ['encrypt', 'decrypt']);
         }
-        
+
         async function encrypt(text, pw) {
-            const enc = new TextEncoder(); 
-            const iv = crypto.getRandomValues(new Uint8Array(12)); 
+            const enc = new TextEncoder();
+            const iv = crypto.getRandomValues(new Uint8Array(12));
             const key = await getK(pw);
-            const cipher = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, enc.encode(text));
-            return btoa(JSON.stringify({ iv: Array.from(iv), data: Array.from(new Uint8Array(cipher)) }));
+            const cipher = await crypto.subtle.encrypt({
+                name: 'AES-GCM',
+                iv
+            }, key, enc.encode(text));
+            return btoa(JSON.stringify({
+                iv: Array.from(iv),
+                data: Array.from(new Uint8Array(cipher))
+            }));
         }
-        
+
         async function decrypt(json, pw) {
             try {
-                const { iv, data } = JSON.parse(atob(json)); 
+                const {
+                    iv,
+                    data
+                } = JSON.parse(atob(json));
                 const key = await getK(pw);
-                const dec = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: new Uint8Array(iv) }, key, new Uint8Array(data));
+                const dec = await crypto.subtle.decrypt({
+                    name: 'AES-GCM',
+                    iv: new Uint8Array(iv)
+                }, key, new Uint8Array(data));
                 return new TextDecoder().decode(dec);
-            } catch (e) { return null; }
+            } catch (e) {
+                return null;
+            }
         }
 
         // Markdown 配置 - 确保与分享页面一致
@@ -1112,7 +1186,9 @@
             highlight: function(code, lang) {
                 if (lang && hljs.getLanguage(lang)) {
                     try {
-                        return hljs.highlight(code, { language: lang }).value;
+                        return hljs.highlight(code, {
+                            language: lang
+                        }).value;
                     } catch (__) {}
                 }
                 return hljs.highlightAuto(code).value;
@@ -1129,42 +1205,44 @@
                     remainingMinutes: remainingMinutes
                 };
             }
-            return { locked: false };
+            return {
+                locked: false
+            };
         }
-        
+
         function setLockout() {
             const lockoutUntil = Date.now() + LOCKOUT_TIME;
             localStorage.setItem(LOCKOUT_KEY, lockoutUntil.toString());
-            
+
             setTimeout(() => {
                 localStorage.removeItem(LOCKOUT_KEY);
                 localStorage.removeItem(ATTEMPTS_KEY);
                 location.reload();
             }, LOCKOUT_TIME);
         }
-        
+
         function getRemainingAttempts() {
             const attempts = localStorage.getItem(ATTEMPTS_KEY);
             return attempts ? MAX_ATTEMPTS - parseInt(attempts) : MAX_ATTEMPTS;
         }
-        
+
         function incrementFailedAttempts() {
             let attempts = localStorage.getItem(ATTEMPTS_KEY);
             attempts = attempts ? parseInt(attempts) + 1 : 1;
             localStorage.setItem(ATTEMPTS_KEY, attempts.toString());
-            
+
             if (attempts >= MAX_ATTEMPTS) {
                 setLockout();
             }
-            
+
             return attempts;
         }
-        
+
         function resetFailedAttempts() {
             localStorage.removeItem(ATTEMPTS_KEY);
             localStorage.removeItem(LOCKOUT_KEY);
         }
-        
+
         // ==================== 主验证函数 ====================
         async function checkPassword() {
             const lockoutCheck = checkLockout();
@@ -1172,7 +1250,7 @@
             const attemptsCount = document.getElementById('attemptsCount');
             const verifyBtn = document.getElementById('verifyBtn');
             const loadingSpinner = document.getElementById('loadingSpinner');
-            
+
             if (lockoutCheck.locked) {
                 attemptsCount.innerHTML = `账户已锁定，${lockoutCheck.remainingMinutes}分钟后重试`;
                 input.value = '';
@@ -1182,10 +1260,10 @@
                 setTimeout(() => input.classList.remove('login-shake'), 500);
                 return;
             }
-            
+
             const password = input.value.trim();
             const remainingAttempts = getRemainingAttempts() - 1;
-            
+
             if (!password) {
                 attemptsCount.innerHTML = '密码不能为空';
                 input.classList.add('login-shake');
@@ -1195,43 +1273,45 @@
                 }, 500);
                 return;
             }
-            
+
             verifyBtn.classList.add('hidden');
             loadingSpinner.classList.remove('hidden');
             input.disabled = true;
-            
+
             try {
                 const response = await fetch(`${API_URL}/api/verify-password`, {
                     method: 'POST',
-                    headers: { 
+                    headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ password: password })
+                    body: JSON.stringify({
+                        password: password
+                    })
                 });
-                
+
                 const result = await response.json();
-                
+
                 if (result.success) {
                     const token = btoa(Date.now() + '-' + Math.random().toString(36).substr(2));
                     sessionStorage.setItem(SESSION_KEY, token);
-                    
+
                     resetFailedAttempts();
-                    
+
                     document.getElementById('authModal').classList.add('hidden');
                     document.getElementById('appContainer').classList.remove('hidden');
-                    
+
                     initApp();
                 } else {
                     const attempts = incrementFailedAttempts();
                     const newRemaining = MAX_ATTEMPTS - attempts;
-                    
+
                     if (attempts >= MAX_ATTEMPTS) {
                         attemptsCount.innerHTML = '账户已锁定，5分钟后重试';
                         setLockout();
                     } else {
                         attemptsCount.innerHTML = `密码错误，剩余尝试次数: ${newRemaining}`;
                     }
-                    
+
                     input.value = '';
                     input.classList.add('login-shake');
                     setTimeout(() => input.classList.remove('login-shake'), 500);
@@ -1252,7 +1332,7 @@
                 input.focus();
             }
         }
-        
+
         // 登出
         function logout() {
             sessionStorage.removeItem(SESSION_KEY);
@@ -1260,7 +1340,7 @@
             localStorage.removeItem(LOCKOUT_KEY);
             location.reload();
         }
-        
+
         // ==================== 应用初始化逻辑 ====================
         function initApp() {
             if (shareId) {
@@ -1271,26 +1351,26 @@
                 renderMainView();
             }
         }
-        
+
         // 检查会话
         function checkSession() {
             const token = sessionStorage.getItem(SESSION_KEY);
             const apiUrl = localStorage.getItem('cf_notes_api');
-            
+
             if (shareId) {
                 document.getElementById('authModal').classList.add('hidden');
                 document.getElementById('appContainer').classList.remove('hidden');
                 initApp();
                 return true;
             }
-            
+
             if (!apiUrl) {
                 document.getElementById('authModal').classList.add('hidden');
                 document.getElementById('appContainer').classList.remove('hidden');
                 initApp();
                 return false;
             }
-            
+
             if (token) {
                 try {
                     const parts = atob(token).split('-');
@@ -1308,10 +1388,10 @@
                     console.error('Token验证失败:', e);
                 }
             }
-            
+
             document.getElementById('authModal').classList.remove('hidden');
             document.getElementById('appContainer').classList.add('hidden');
-            
+
             const lockoutCheck = checkLockout();
             if (lockoutCheck.locked) {
                 const attemptsCount = document.getElementById('attemptsCount');
@@ -1325,7 +1405,7 @@
                 document.getElementById('authPassword').disabled = false;
                 document.getElementById('verifyBtn').disabled = false;
             }
-            
+
             return false;
         }
 
@@ -1451,7 +1531,7 @@
                 </footer>
             </div>
         `;
-            
+
             // 添加字符计数监听
             const noteInput = document.getElementById('noteInput');
             const noteCharCount = document.getElementById('noteCharCount');
@@ -1460,26 +1540,24 @@
                     noteCharCount.textContent = this.value.length;
                 });
             }
-            
+
             // 加载默认视图数据
-            if (currentView === 'notes') {
-            } else {
+            if (currentView === 'notes') {} else {
                 loadNavLinks();
             }
-            
+
             // 显示快速访问栏
             document.getElementById('quickAccessBar').classList.remove('hidden');
         }
 
-        // ==================== 防截图/录屏专用函数 ====================
+        // ==================== 防截图/录屏专用函数（仅保留窗口模糊、阻止打印/截图快捷键，移除动态水印）====================
         let antiScreenshotActive = false;
-        let watermarkInterval = null;
 
         function applyAntiScreenshotProtection() {
             const shareResultDiv = document.querySelector('.share-result-container');
             if (!shareResultDiv) return;
             if (antiScreenshotActive) return;
-            
+
             // 1. 窗口失焦/聚焦时模糊/恢复
             const onBlur = () => {
                 document.getElementById('burningContent')?.classList.add('burn-blur');
@@ -1489,7 +1567,7 @@
             };
             window.addEventListener('blur', onBlur);
             window.addEventListener('focus', onFocus);
-            
+
             // 2. 页面可见性变化（切换到后台/锁屏）时模糊
             const onVisibilityChange = () => {
                 if (document.hidden) {
@@ -1499,7 +1577,7 @@
                 }
             };
             document.addEventListener('visibilitychange', onVisibilityChange);
-            
+
             // 3. 阻止打印（Ctrl+P 等）
             const onBeforePrint = (e) => {
                 e.preventDefault();
@@ -1507,7 +1585,7 @@
                 return false;
             };
             window.addEventListener('beforeprint', onBeforePrint);
-            
+
             // 4. 阻止部分截图快捷键（PrintScreen 无法完全阻止，但可弹窗警告）
             const onKeyDown = (e) => {
                 // Ctrl+P
@@ -1534,55 +1612,20 @@
                 }
             };
             window.addEventListener('keydown', onKeyDown);
-            
-            // 5. 添加动态水印（防截图追溯）
-            const burningContentParent = shareResultDiv.querySelector('.text-left.p-6');
-            if (burningContentParent && !document.getElementById('burnWatermark')) {
-                const watermark = document.createElement('div');
-                watermark.id = 'burnWatermark';
-                watermark.className = 'burn-watermark';
-                
-                // 生成随机字符串 + 时间戳 + 会话标识
-                const sessionId = Math.random().toString(36).substring(2, 12);
-                const timestamp = new Date().toLocaleString('zh-CN', { hour12: false });
-                const texts = [];
-                for (let i = 0; i < 30; i++) {
-                    const randomChar = Math.random().toString(36).substring(2, 5);
-                    texts.push(`📵 CLOUDNOTES 绝密 · 截屏追溯 ${sessionId} · ${timestamp} · ${randomChar}`);
-                }
-                watermark.innerHTML = texts.map(t => `<span>${t}</span>`).join('');
-                
-                // 设置为绝对定位覆盖
-                burningContentParent.style.position = 'relative';
-                burningContentParent.appendChild(watermark);
-                
-                // 水印内容动态变化（每3秒局部刷新）
-                watermarkInterval = setInterval(() => {
-                    if (watermark) {
-                        const newTimestamp = new Date().toLocaleString('zh-CN', { hour12: false });
-                        const randomChars = Math.random().toString(36).substring(2, 8);
-                        const spans = watermark.querySelectorAll('span');
-                        if (spans.length > 0) {
-                            const idx = Math.floor(Math.random() * spans.length);
-                            spans[idx].textContent = `📵 截屏追溯 ${sessionId} · ${newTimestamp} · ${randomChars}`;
-                        }
-                    }
-                }, 3000);
-            }
-            
+
             // 存储事件处理器以便移除
             window.__burnBlurHandler = onBlur;
             window.__burnFocusHandler = onFocus;
             window.__burnVisibilityHandler = onVisibilityChange;
             window.__burnPrintHandler = onBeforePrint;
             window.__burnKeyHandler = onKeyDown;
-            
+
             antiScreenshotActive = true;
         }
 
         function removeAntiScreenshotProtection() {
             if (!antiScreenshotActive) return;
-            
+
             // 移除事件监听
             if (window.__burnBlurHandler) {
                 window.removeEventListener('blur', window.__burnBlurHandler);
@@ -1597,22 +1640,17 @@
             if (window.__burnKeyHandler) {
                 window.removeEventListener('keydown', window.__burnKeyHandler);
             }
-            
-            // 移除水印
-            const watermark = document.getElementById('burnWatermark');
-            if (watermark) watermark.remove();
-            if (watermarkInterval) clearInterval(watermarkInterval);
-            
+
             // 移除模糊类
             document.getElementById('burningContent')?.classList.remove('burn-blur');
-            
+
             // 清除全局引用
             window.__burnBlurHandler = null;
             window.__burnFocusHandler = null;
             window.__burnVisibilityHandler = null;
             window.__burnPrintHandler = null;
             window.__burnKeyHandler = null;
-            
+
             antiScreenshotActive = false;
         }
 
@@ -1680,7 +1718,7 @@
                 </footer>
             </div>
         `;
-            
+
             // 添加回车键支持
             const sharePwInput = document.getElementById('sharePw');
             if (sharePwInput) {
@@ -1690,7 +1728,7 @@
                     }
                 });
             }
-            
+
             // 禁止复制阅后即焚内容（防止选择/复制）
             const burningContent = document.getElementById('burningContent');
             if (burningContent) {
@@ -1716,20 +1754,22 @@
         async function loadNavLinks() {
             try {
                 const response = await fetch(`${API_URL}/api/nav/list`, {
-                    headers: { 'Authorization': ADMIN_KEY }
+                    headers: {
+                        'Authorization': ADMIN_KEY
+                    }
                 });
-                
+
                 if (!response.ok) {
                     throw new Error('获取导航链接失败');
                 }
-                
+
                 const navLinks = await response.json();
-                
+
                 navLinksCache = {};
                 navLinks.forEach(link => {
                     navLinksCache[link.id] = link;
                 });
-                
+
                 const categories = {};
                 navLinks.forEach(link => {
                     const category = link.category || '未分类';
@@ -1738,7 +1778,7 @@
                     }
                     categories[category].push(link);
                 });
-                
+
                 const navCategoriesDiv = document.getElementById('navCategories');
                 if (navLinks.length === 0) {
                     navCategoriesDiv.innerHTML = `
@@ -1750,10 +1790,10 @@
                     document.getElementById('navStats').textContent = '0 个链接';
                     return;
                 }
-                
+
                 let html = '';
                 const categoryNames = Object.keys(categories).sort();
-                
+
                 categoryNames.forEach(category => {
                     const links = categories[category];
                     html += `
@@ -1764,12 +1804,12 @@
                             </h3>
                             <div class="nav-grid">
                     `;
-                    
+
                     links.forEach(link => {
                         const iconClass = link.icon || 'fas fa-globe';
                         const iconColor = link.icon_color || 'icon-blue';
                         const description = link.description ? `<p class="text-xs text-slate-500 mt-1 line-clamp-2">${link.description}</p>` : '';
-                        
+
                         html += `
                             <div class="nav-link-card glass p-5 rounded-2xl space-y-3 cursor-pointer" onclick="openLinkInNewTab('${link.url}')" title="点击访问: ${link.url}">
                                 <div class="flex items-start justify-between">
@@ -1793,17 +1833,17 @@
                             </div>
                         `;
                     });
-                    
+
                     html += `
                             </div>
                         </div>
                     `;
                 });
-                
+
                 navCategoriesDiv.innerHTML = html;
-                
+
                 document.getElementById('navStats').textContent = `${navLinks.length} 个链接，${categoryNames.length} 个分类`;
-                
+
             } catch (error) {
                 console.error('加载导航链接失败:', error);
                 const navCategoriesDiv = document.getElementById('navCategories');
@@ -1814,11 +1854,11 @@
                 `;
             }
         }
-        
+
         function openLinkInNewTab(url) {
             window.open(url, '_blank');
         }
-        
+
         function showAddNavLinkModal() {
             document.getElementById('addNavLinkModal').classList.remove('hidden');
             document.getElementById('navLinkTitle').value = '';
@@ -1828,20 +1868,20 @@
             document.getElementById('navLinkIconColor').value = 'icon-blue';
             document.getElementById('navLinkDescription').value = '';
         }
-        
+
         function closeAddNavLinkModal() {
             document.getElementById('addNavLinkModal').classList.add('hidden');
         }
-        
+
         function setNavCategory(category) {
             document.getElementById('navLinkCategory').value = category;
         }
-        
+
         function setNavIcon(icon, color) {
             document.getElementById('navLinkIcon').value = icon;
             document.getElementById('navLinkIconColor').value = color;
         }
-        
+
         async function saveNavLink() {
             const title = document.getElementById('navLinkTitle').value.trim();
             const url = document.getElementById('navLinkUrl').value.trim();
@@ -1849,23 +1889,23 @@
             const icon = document.getElementById('navLinkIcon').value;
             const icon_color = document.getElementById('navLinkIconColor').value;
             const description = document.getElementById('navLinkDescription').value.trim();
-            
+
             if (!title || !url) {
                 alert("请填写链接标题和地址");
                 return;
             }
-            
+
             if (!url.startsWith('http://') && !url.startsWith('https://')) {
                 alert("链接地址格式不正确，请以 http:// 或 https:// 开头");
                 return;
             }
-            
+
             try {
                 const response = await fetch(`${API_URL}/api/nav/save`, {
                     method: 'POST',
-                    headers: { 
+                    headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': ADMIN_KEY 
+                        'Authorization': ADMIN_KEY
                     },
                     body: JSON.stringify({
                         title,
@@ -1876,7 +1916,7 @@
                         description
                     })
                 });
-                
+
                 if (response.ok) {
                     alert("✅ 导航链接已保存");
                     closeAddNavLinkModal();
@@ -1889,14 +1929,14 @@
                 alert("❌ 网络连接失败");
             }
         }
-        
+
         async function editNavLink(id) {
             const link = navLinksCache[id];
             if (!link) {
                 alert("链接不存在");
                 return;
             }
-            
+
             currentEditNavLinkId = id;
             document.getElementById('editNavLinkId').textContent = `#${id}`;
             document.getElementById('editNavLinkTitle').value = link.title;
@@ -1905,29 +1945,29 @@
             document.getElementById('editNavLinkIcon').value = link.icon || 'fas fa-globe';
             document.getElementById('editNavLinkIconColor').value = link.icon_color || 'icon-blue';
             document.getElementById('editNavLinkDescription').value = link.description || '';
-            
+
             const iconPreview = document.getElementById('editNavIconPreview');
             iconPreview.innerHTML = `<i class="${link.icon || 'fas fa-globe'} ${link.icon_color || 'icon-blue'} text-2xl"></i>`;
-            
+
             document.getElementById('editNavLinkModal').classList.remove('hidden');
         }
-        
+
         function setEditNavCategory(category) {
             document.getElementById('editNavLinkCategory').value = category;
         }
-        
+
         function setEditNavIcon(icon, color) {
             document.getElementById('editNavLinkIcon').value = icon;
             document.getElementById('editNavLinkIconColor').value = color;
             const iconPreview = document.getElementById('editNavIconPreview');
             iconPreview.innerHTML = `<i class="${icon} ${color} text-2xl"></i>`;
         }
-        
+
         function closeEditNavLinkModal() {
             document.getElementById('editNavLinkModal').classList.add('hidden');
             currentEditNavLinkId = null;
         }
-        
+
         async function updateNavLink() {
             const title = document.getElementById('editNavLinkTitle').value.trim();
             const url = document.getElementById('editNavLinkUrl').value.trim();
@@ -1935,23 +1975,23 @@
             const icon = document.getElementById('editNavLinkIcon').value;
             const icon_color = document.getElementById('editNavLinkIconColor').value;
             const description = document.getElementById('editNavLinkDescription').value.trim();
-            
+
             if (!title || !url) {
                 alert("请填写链接标题和地址");
                 return;
             }
-            
+
             if (!url.startsWith('http://') && !url.startsWith('https://')) {
                 alert("链接地址格式不正确，请以 http:// 或 https:// 开头");
                 return;
             }
-            
+
             try {
                 const response = await fetch(`${API_URL}/api/nav/save`, {
                     method: 'POST',
-                    headers: { 
+                    headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': ADMIN_KEY 
+                        'Authorization': ADMIN_KEY
                     },
                     body: JSON.stringify({
                         id: currentEditNavLinkId,
@@ -1963,7 +2003,7 @@
                         description
                     })
                 });
-                
+
                 if (response.ok) {
                     alert("✅ 导航链接已更新");
                     closeEditNavLinkModal();
@@ -1976,24 +2016,26 @@
                 alert("❌ 网络连接失败");
             }
         }
-        
+
         function confirmDeleteNavLink() {
             if (confirm("确定要删除这个导航链接吗？此操作不可撤销。")) {
                 deleteNavLink(currentEditNavLinkId);
             }
         }
-        
+
         async function deleteNavLink(id) {
             try {
                 const response = await fetch(`${API_URL}/api/nav/delete`, {
                     method: 'POST',
-                    headers: { 
+                    headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': ADMIN_KEY 
+                        'Authorization': ADMIN_KEY
                     },
-                    body: JSON.stringify({ id })
+                    body: JSON.stringify({
+                        id
+                    })
                 });
-                
+
                 if (response.ok) {
                     alert("✅ 导航链接已删除");
                     closeEditNavLinkModal();
@@ -2006,26 +2048,28 @@
                 alert("❌ 网络连接失败");
             }
         }
-        
+
         async function exportNavLinks() {
             try {
                 const response = await fetch(`${API_URL}/api/nav/list`, {
-                    headers: { 'Authorization': ADMIN_KEY }
+                    headers: {
+                        'Authorization': ADMIN_KEY
+                    }
                 });
-                
+
                 if (!response.ok) {
                     throw new Error('获取导航链接失败');
                 }
-                
+
                 const navLinks = await response.json();
-                
+
                 const exportData = {
                     export_date: new Date().toISOString(),
                     total_links: navLinks.length,
                     categories: {},
                     links: navLinks
                 };
-                
+
                 navLinks.forEach(link => {
                     const category = link.category || '未分类';
                     if (!exportData.categories[category]) {
@@ -2033,15 +2077,17 @@
                     }
                     exportData.categories[category].push(link.title);
                 });
-                
-                const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+
+                const blob = new Blob([JSON.stringify(exportData, null, 2)], {
+                    type: 'application/json'
+                });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
                 a.download = `CloudNotes_Nav_Export_${new Date().toISOString().split('T')[0]}.json`;
                 a.click();
                 URL.revokeObjectURL(url);
-                
+
             } catch (error) {
                 console.error('导出导航链接失败:', error);
                 alert("❌ 导出失败");
@@ -2054,41 +2100,43 @@
             document.getElementById('quickMainPw').value = '';
             document.getElementById('quickNoteInput').value = '';
             document.getElementById('quickNoteCharCount').textContent = '0';
-            
+
             const quickNoteInput = document.getElementById('quickNoteInput');
             const quickNoteCharCount = document.getElementById('quickNoteCharCount');
             quickNoteInput.addEventListener('input', function() {
                 quickNoteCharCount.textContent = this.value.length;
             });
         }
-        
+
         function closeAddNoteModal() {
             document.getElementById('addNoteModal').classList.add('hidden');
         }
-        
+
         async function quickSaveNote() {
             const text = document.getElementById('quickNoteInput').value;
             const pw = document.getElementById('quickMainPw').value;
-            
+
             if (!text || !pw) {
                 alert("请填写内容和密码");
                 return;
             }
-            
+
             try {
                 const cipher = await encrypt(text, pw);
-                
+
                 const res = await fetch(`${API_URL}/api/save`, {
-                    method: 'POST', 
-                    headers: { 
-                        'Content-Type': 'application/json', 
-                        'Authorization': ADMIN_KEY 
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': ADMIN_KEY
                     },
-                    body: JSON.stringify({ content: cipher })
+                    body: JSON.stringify({
+                        content: cipher
+                    })
                 });
-                
-                if (res.ok) { 
-                    alert("✅ 笔记已存入安全库"); 
+
+                if (res.ok) {
+                    alert("✅ 笔记已存入安全库");
                     closeAddNoteModal();
                     if (currentView === 'notes') {
                         loadNotesList();
@@ -2096,13 +2144,13 @@
                 } else {
                     alert("❌ 保存失败");
                 }
-            } catch (e) { 
-                alert("❌ 网络连接失败"); 
+            } catch (e) {
+                alert("❌ 网络连接失败");
             }
         }
-        
+
         // ==================== 核心改进部分 ====================
-        
+
         // Base64 编码辅助函数（支持中文）
         function base64Encode(str) {
             try {
@@ -2112,7 +2160,7 @@
                 return '';
             }
         }
-        
+
         // Base64 解码辅助函数
         function base64Decode(str) {
             try {
@@ -2122,12 +2170,12 @@
                 return '';
             }
         }
-        
+
         // 从 data 属性导出的函数
         function exportFromData(button) {
             const id = button.getAttribute('data-note-id');
             const base64Content = button.getAttribute('data-note-content-base64');
-            
+
             if (!base64Content) {
                 // 回退到从缓存获取
                 const note = notesCache[id];
@@ -2138,7 +2186,7 @@
                 }
                 return;
             }
-            
+
             try {
                 const text = base64Decode(base64Content);
                 if (text) {
@@ -2151,12 +2199,12 @@
                 alert('导出失败，请重试');
             }
         }
-        
+
         // 从 data 属性编辑的函数
         function editFromData(button) {
             const id = button.getAttribute('data-note-id');
             const base64Content = button.getAttribute('data-note-content-base64');
-            
+
             if (!base64Content) {
                 // 回退到从缓存获取
                 const note = notesCache[id];
@@ -2167,7 +2215,7 @@
                 }
                 return;
             }
-            
+
             try {
                 const text = base64Decode(base64Content);
                 if (text) {
@@ -2180,59 +2228,63 @@
                 alert('编辑失败，请重试');
             }
         }
-        
+
         // 修改后的加载笔记列表函数 - 包含顶部和底部的展开/收起按钮
         async function loadNotesList() {
-            const pw = document.getElementById('mainPw').value; 
+            const pw = document.getElementById('mainPw').value;
             if (!pw) return alert("请输入密码解密");
-            
+
             const listDiv = document.getElementById('notesList');
             listDiv.innerHTML = '<div class="text-center py-12 text-slate-600 italic text-sm">加载中...</div>';
-            
+
             try {
-                const res = await fetch(`${API_URL}/api/list`, { headers: { 'Authorization': ADMIN_KEY } });
-                const notes = await res.json(); 
+                const res = await fetch(`${API_URL}/api/list`, {
+                    headers: {
+                        'Authorization': ADMIN_KEY
+                    }
+                });
+                const notes = await res.json();
                 listDiv.innerHTML = "";
-                
+
                 if (notes.length === 0) {
                     listDiv.innerHTML = '<div class="text-center py-20 text-slate-700 italic text-sm">暂无数据</div>';
                     return;
                 }
-                
+
                 notesCache = {};
-                
+
                 for (let n of notes) {
                     const clearText = await decrypt(n.content, pw);
                     if (!clearText) {
                         continue;
                     }
-                    
+
                     notesCache[n.id] = {
                         id: n.id,
                         clearText: clearText,
                         created_at: n.created_at
                     };
-                    
-                    const isMarkdown = clearText.includes('# ') || clearText.includes('## ') || clearText.includes('```') || 
-                                       clearText.includes('**') || clearText.includes('- ') || clearText.includes('> ');
-                    
+
+                    const isMarkdown = clearText.includes('# ') || clearText.includes('## ') || clearText.includes('```') ||
+                        clearText.includes('**') || clearText.includes('- ') || clearText.includes('> ');
+
                     const card = document.createElement('div');
                     card.className = "note-card glass p-6 rounded-3xl space-y-4 border border-white/5 shadow-lg group";
-                    
+
                     let previewContent = clearText;
                     let showFullButton = false;
-                    
+
                     if (clearText.length > 300) {
                         previewContent = clearText.substring(0, 300) + '...';
                         showFullButton = true;
                     }
-                    
-                    const renderedContent = isMarkdown ? marked.parse(previewContent) : 
-                                            `<div class="whitespace-pre-wrap">${previewContent.replace(/\n/g, '<br>')}</div>`;
-                    
+
+                    const renderedContent = isMarkdown ? marked.parse(previewContent) :
+                        `<div class="whitespace-pre-wrap">${previewContent.replace(/\n/g, '<br>')}</div>`;
+
                     // 使用 Base64 编码内容存储在 data 属性中
                     const base64Content = base64Encode(clearText);
-                    
+
                     card.innerHTML = `
                         <div class="flex justify-between items-center mb-2">
                             <span class="text-[9px] font-black text-slate-500 tracking-widest uppercase italic">
@@ -2290,12 +2342,12 @@
                     `;
                     listDiv.appendChild(card);
                 }
-                
+
                 // 高亮代码块
                 setTimeout(() => {
                     hljs.highlightAll();
                 }, 100);
-            } catch (e) { 
+            } catch (e) {
                 console.error('加载列表失败:', e);
                 listDiv.innerHTML = '<div class="text-center py-20 text-slate-700 italic text-sm">拉取失败，请检查网络连接</div>';
             }
@@ -2307,26 +2359,26 @@
             document.getElementById('setApi').value = API_URL;
             document.getElementById('setKey').value = ADMIN_KEY;
         }
-        
-        function closeSettings() { 
-            document.getElementById('settingsModal').classList.add('hidden'); 
+
+        function closeSettings() {
+            document.getElementById('settingsModal').classList.add('hidden');
         }
-        
+
         // ========== 修改点：自动补全 Worker 服务地址协议 ==========
         function saveSettings() {
             let apiUrl = document.getElementById('setApi').value.trim();
-            
+
             // 智能补全协议：若不以 http:// 或 https:// 开头，则默认添加 https://
             if (!/^https?:\/\//i.test(apiUrl)) {
                 apiUrl = 'https://' + apiUrl;
             }
-            
+
             // 移除尾部斜杠后统一添加
             apiUrl = apiUrl.replace(/\/+$/, '');
-            
+
             localStorage.setItem('cf_notes_api', apiUrl);
             localStorage.setItem('cf_notes_key', document.getElementById('setKey').value);
-            
+
             location.reload();
         }
 
@@ -2383,7 +2435,7 @@ console.log('Hello');
             const editTabBtn = document.getElementById('editTabBtn');
             const previewTabBtn = document.getElementById('previewTabBtn');
             const editContent = document.getElementById('editNoteContent');
-            
+
             if (tabName === 'edit') {
                 editTab.classList.remove('hidden');
                 previewTab.classList.add('hidden');
@@ -2394,17 +2446,17 @@ console.log('Hello');
                 previewTab.classList.remove('hidden');
                 editTabBtn.classList.remove('active');
                 previewTabBtn.classList.add('active');
-                
+
                 const previewDiv = document.getElementById('markdownPreview');
                 const markdownContent = editContent.value || '';
-                
+
                 // 使用与分享页面完全相同的渲染方式
                 previewDiv.innerHTML = marked.parse(markdownContent);
-                
+
                 // 高亮代码块 - 使用与分享页面相同的设置
                 setTimeout(() => {
                     hljs.highlightAll();
-                    
+
                     // 确保所有代码块都有正确的背景
                     previewDiv.querySelectorAll('pre code').forEach((block) => {
                         if (!block.classList.contains('hljs')) {
@@ -2420,7 +2472,7 @@ console.log('Hello');
             const start = textarea.selectionStart;
             const end = textarea.selectionEnd;
             const selectedText = textarea.value.substring(start, end);
-            
+
             if (selectedText) {
                 // 处理不同的语法
                 let newText;
@@ -2437,9 +2489,9 @@ console.log('Hello');
                 } else {
                     newText = syntax + selectedText;
                 }
-                
+
                 textarea.value = textarea.value.substring(0, start) + newText + textarea.value.substring(end);
-                
+
                 // 设置光标位置
                 if (syntax === '**' || syntax === '*' || syntax === '~~') {
                     textarea.selectionStart = start + syntax.length;
@@ -2471,9 +2523,9 @@ console.log('Hello');
                 } else {
                     placeholderText = syntax + placeholder;
                 }
-                
+
                 textarea.value = textarea.value.substring(0, start) + placeholderText + textarea.value.substring(end);
-                
+
                 // 设置光标位置
                 if (syntax === '```javascript\n\n```') {
                     textarea.selectionStart = start + '```javascript\n'.length;
@@ -2498,7 +2550,7 @@ console.log('Hello');
                     textarea.selectionEnd = start + syntax.length + placeholder.length;
                 }
             }
-            
+
             textarea.focus();
             updateCharCount();
         }
@@ -2514,34 +2566,36 @@ console.log('Hello');
         async function doSave(content, id = null) {
             const text = content || document.getElementById('noteInput').value;
             const pw = document.getElementById('mainPw').value;
-            
+
             if (!text || !pw) {
                 alert("请填写内容和密码");
                 return null;
             }
-            
+
             try {
                 const cipher = await encrypt(text, pw);
-                
-                const body = { content: cipher };
-                
+
+                const body = {
+                    content: cipher
+                };
+
                 if (id !== null) {
                     body.id = id;
                 }
-                
+
                 const res = await fetch(`${API_URL}/api/save`, {
-                    method: 'POST', 
-                    headers: { 
-                        'Content-Type': 'application/json', 
-                        'Authorization': ADMIN_KEY 
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': ADMIN_KEY
                     },
                     body: JSON.stringify(body)
                 });
-                
-                if (res.ok) { 
+
+                if (res.ok) {
                     if (id === null) {
-                        alert("✅ 已存入安全库"); 
-                        document.getElementById('noteInput').value = ""; 
+                        alert("✅ 已存入安全库");
+                        document.getElementById('noteInput').value = "";
                         document.getElementById('noteCharCount').textContent = "0";
                     } else {
                         alert("✅ 笔记已更新");
@@ -2552,8 +2606,8 @@ console.log('Hello');
                     alert("❌ 保存失败");
                     return false;
                 }
-            } catch (e) { 
-                alert("❌ 网络连接失败"); 
+            } catch (e) {
+                alert("❌ 网络连接失败");
                 return false;
             }
         }
@@ -2564,24 +2618,24 @@ console.log('Hello');
             const topToggleBtn = document.getElementById(`topToggle-${id}`);
             const bottomToggleBtn = document.getElementById(`bottomToggle-${id}`);
             const note = notesCache[id];
-            
+
             if (!note) {
                 console.error('未找到笔记缓存:', id);
                 return;
             }
-            
+
             const currentContent = contentDiv.innerHTML;
             const showFullText = currentContent.includes('显示全部内容');
-            
-            const isMarkdown = note.clearText.includes('# ') || note.clearText.includes('## ') || 
-                               note.clearText.includes('```') || note.clearText.includes('**') ||
-                               note.clearText.includes('- ') || note.clearText.includes('> ');
-            
+
+            const isMarkdown = note.clearText.includes('# ') || note.clearText.includes('## ') ||
+                note.clearText.includes('```') || note.clearText.includes('**') ||
+                note.clearText.includes('- ') || note.clearText.includes('> ');
+
             if (showFullText) {
                 // 显示完整内容 - 使用与编辑模式预览相同的渲染方式
-                const renderedContent = isMarkdown ? marked.parse(note.clearText) : 
-                                        `<div class="whitespace-pre-wrap">${note.clearText.replace(/\n/g, '<br>')}</div>`;
-                contentDiv.innerHTML = renderedContent + 
+                const renderedContent = isMarkdown ? marked.parse(note.clearText) :
+                    `<div class="whitespace-pre-wrap">${note.clearText.replace(/\n/g, '<br>')}</div>`;
+                contentDiv.innerHTML = renderedContent +
                     `<div class="text-center mt-4">
                         <button onclick="toggleNoteContent(${id})" 
                                 class="toggle-btn expanded flex items-center justify-center gap-1 mx-auto px-4 py-2 text-xs text-blue-400 hover:text-blue-300 hover:bg-blue-900/20 rounded-lg transition"
@@ -2590,7 +2644,7 @@ console.log('Hello');
                             <span>收起</span>
                         </button>
                     </div>`;
-                
+
                 // 更新顶部按钮
                 if (topToggleBtn) {
                     topToggleBtn.classList.add('expanded');
@@ -2599,7 +2653,7 @@ console.log('Hello');
                         <span>收起</span>
                     `;
                 }
-                
+
                 // 高亮代码块 - 使用与编辑模式预览相同的设置
                 setTimeout(() => {
                     hljs.highlightAll();
@@ -2610,10 +2664,10 @@ console.log('Hello');
                 if (note.clearText.length > 300) {
                     previewContent = note.clearText.substring(0, 300) + '...';
                 }
-                
-                const renderedContent = isMarkdown ? marked.parse(previewContent) : 
-                                        `<div class="whitespace-pre-wrap">${previewContent.replace(/\n/g, '<br>')}</div>`;
-                contentDiv.innerHTML = renderedContent + 
+
+                const renderedContent = isMarkdown ? marked.parse(previewContent) :
+                    `<div class="whitespace-pre-wrap">${previewContent.replace(/\n/g, '<br>')}</div>`;
+                contentDiv.innerHTML = renderedContent +
                     `<div class="text-center mt-4">
                         <button onclick="toggleNoteContent(${id})" 
                                 class="toggle-btn flex items-center justify-center gap-1 mx-auto px-4 py-2 text-xs text-blue-400 hover:text-blue-300 hover:bg-blue-900/20 rounded-lg transition"
@@ -2622,7 +2676,7 @@ console.log('Hello');
                             <span>显示全部内容</span>
                         </button>
                     </div>`;
-                
+
                 // 更新顶部按钮
                 if (topToggleBtn) {
                     topToggleBtn.classList.remove('expanded');
@@ -2638,50 +2692,50 @@ console.log('Hello');
         function openEdit(id, content) {
             currentEditId = id;
             document.getElementById('editNoteId').textContent = `#${id}`;
-            
+
             const textarea = document.getElementById('editNoteContent');
             textarea.value = content;
-            
+
             // 初始化字符计数
             updateCharCount();
-            
+
             // 添加输入监听
             textarea.addEventListener('input', updateCharCount);
-            
+
             // 添加实时预览监听
             textarea.addEventListener('input', function() {
                 if (!document.getElementById('previewTab').classList.contains('hidden')) {
                     switchTab('preview');
                 }
             });
-            
+
             // 默认显示编辑模式
             switchTab('edit');
-            
+
             // 显示模态框
             document.getElementById('editModal').classList.remove('hidden');
-            
+
             // 聚焦到文本区域
             setTimeout(() => {
                 textarea.focus();
             }, 100);
         }
-        
+
         function closeEdit() {
             document.getElementById('editModal').classList.add('hidden');
             currentEditId = null;
         }
-        
+
         async function saveEdit() {
             const newContent = document.getElementById('editNoteContent').value;
-            
+
             if (!newContent.trim()) {
                 alert("笔记内容不能为空");
                 return;
             }
-            
+
             const success = await doSave(newContent, currentEditId);
-            
+
             if (success) {
                 closeEdit();
             }
@@ -2690,38 +2744,38 @@ console.log('Hello');
         // ==================== 分享功能（自动复制） ====================
         async function doShareCopy(event, cipher) {
             const pid = Math.random().toString(36).substring(2, 12);
-            
+
             // 显示加载状态
             const button = event.target.closest('button');
             const originalText = button.innerHTML;
             button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 生成中...';
             button.disabled = true;
-            
+
             try {
                 await fetch(`${API_URL}/api/save`, {
-                    method: 'POST', 
-                    headers: { 
-                        'Content-Type': 'application/json', 
-                        'Authorization': ADMIN_KEY 
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': ADMIN_KEY
                     },
-                    body: JSON.stringify({ 
-                        content: cipher, 
-                        public_id: pid, 
-                        is_share: 1 
+                    body: JSON.stringify({
+                        content: cipher,
+                        public_id: pid,
+                        is_share: 1
                     })
                 });
-                
+
                 const fullUrl = `${window.location.origin}${window.location.pathname}?share=${pid}&cfg=${btoa(API_URL)}`;
-                
+
                 // 使用现代 Clipboard API 复制到剪贴板
                 try {
                     await navigator.clipboard.writeText(fullUrl);
-                    
+
                     // 显示复制成功的视觉反馈
                     button.innerHTML = '<i class="fas fa-check"></i> 已复制';
                     button.style.background = 'linear-gradient(135deg, #10b981, #059669)';
                     button.style.color = 'white';
-                    
+
                     // 3秒后恢复原状
                     setTimeout(() => {
                         button.innerHTML = originalText;
@@ -2729,19 +2783,19 @@ console.log('Hello');
                         button.style.background = '';
                         button.style.color = '';
                     }, 3000);
-                    
+
                     // 显示 Toast 通知
                     showToast('链接已复制到剪贴板！', 'success');
-                    
+
                 } catch (clipboardError) {
                     console.error('Clipboard API 失败:', clipboardError);
-                    
+
                     // 降级方案：使用 document.execCommand
                     const textarea = document.createElement('textarea');
                     textarea.value = fullUrl;
                     document.body.appendChild(textarea);
                     textarea.select();
-                    
+
                     try {
                         const success = document.execCommand('copy');
                         if (success) {
@@ -2749,14 +2803,14 @@ console.log('Hello');
                             button.innerHTML = '<i class="fas fa-check"></i> 已复制';
                             button.style.background = 'linear-gradient(135deg, #10b981, #059669)';
                             button.style.color = 'white';
-                            
+
                             setTimeout(() => {
                                 button.innerHTML = originalText;
                                 button.disabled = false;
                                 button.style.background = '';
                                 button.style.color = '';
                             }, 3000);
-                            
+
                             showToast('链接已复制到剪贴板！', 'success');
                         } else {
                             // 如果 execCommand 也失败，回退到 prompt
@@ -2773,21 +2827,21 @@ console.log('Hello');
                         document.body.removeChild(textarea);
                     }
                 }
-            } catch (e) { 
+            } catch (e) {
                 console.error('生成分享链接失败:', e);
-                
+
                 // 显示错误反馈
                 button.innerHTML = '<i class="fas fa-exclamation-triangle"></i> 失败';
                 button.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
                 button.style.color = 'white';
-                
+
                 setTimeout(() => {
                     button.innerHTML = originalText;
                     button.disabled = false;
                     button.style.background = '';
                     button.style.color = '';
                 }, 3000);
-                
+
                 showToast('分享失败，请重试', 'error');
             }
         }
@@ -2799,7 +2853,7 @@ console.log('Hello');
             if (existingToast) {
                 existingToast.remove();
             }
-            
+
             // 创建新的 toast
             const toast = document.createElement('div');
             toast.id = 'customToast';
@@ -2808,14 +2862,14 @@ console.log('Hello');
                 <i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i>
                 <span>${message}</span>
             `;
-            
+
             document.getElementById('toastContainer').appendChild(toast);
-            
+
             // 显示动画
             setTimeout(() => {
                 toast.classList.add('show');
             }, 10);
-            
+
             // 3秒后自动消失
             setTimeout(() => {
                 toast.classList.remove('show');
@@ -2825,7 +2879,7 @@ console.log('Hello');
                     }
                 }, 300);
             }, 3000);
-            
+
             // 点击关闭
             toast.addEventListener('click', () => {
                 toast.classList.remove('show');
@@ -2839,46 +2893,60 @@ console.log('Hello');
 
         function doExport(text, id) {
             const date = new Date().toISOString().split('T')[0];
-            const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+            const blob = new Blob([text], {
+                type: 'text/plain;charset=utf-8'
+            });
             const url = URL.createObjectURL(blob);
-            const a = document.createElement('a'); 
-            a.href = url; 
-            a.download = `CloudNote_${id}_${date}.md`; 
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `CloudNote_${id}_${date}.md`;
             a.click();
         }
 
         async function doDelete(id) {
             if (!confirm("确定要物理抹除这条记录吗？")) return;
             await fetch(`${API_URL}/api/delete`, {
-                method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': ADMIN_KEY },
-                body: JSON.stringify({ id: id })
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': ADMIN_KEY
+                },
+                body: JSON.stringify({
+                    id: id
+                })
             });
             loadNotesList();
         }
 
         async function doAI() {
-            const text = document.getElementById('noteInput').value; 
+            const text = document.getElementById('noteInput').value;
             if (!text) return alert("笔记为空");
-            const btn = event.target; 
-            btn.innerText = "思考中..."; 
+            const btn = event.target;
+            btn.innerText = "思考中...";
             btn.disabled = true;
             try {
                 const res = await fetch(`${API_URL}/api/ai-sum`, {
-                    method: 'POST', headers: { 'Content-Type': 'application/json', 'Authorization': ADMIN_KEY },
-                    body: JSON.stringify({ text: text.substring(0, 1000) })
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': ADMIN_KEY
+                    },
+                    body: JSON.stringify({
+                        text: text.substring(0, 1000)
+                    })
                 });
                 const data = await res.json();
                 document.getElementById('noteInput').value += `\n\n--- ✨ AI 总结 ---\n\n${data.summary}`;
                 document.getElementById('noteCharCount').textContent = document.getElementById('noteInput').value.length;
-            } finally { 
-                btn.innerText = "✨ AI 智能总结"; 
-                btn.disabled = false; 
+            } finally {
+                btn.innerText = "✨ AI 智能总结";
+                btn.disabled = false;
             }
         }
 
         // ==================== 阅后即焚功能 ====================
         async function doUnlockShare() {
-            const pw = document.getElementById('sharePw').value; 
+            const pw = document.getElementById('sharePw').value;
             const resDiv = document.getElementById('shareResult');
             const unlockBtn = document.getElementById('unlockBtn');
             const burnTimerDiv = document.getElementById('burnTimer');
@@ -2888,50 +2956,58 @@ console.log('Hello');
             const burnProgressBar = document.getElementById('burnProgressBar');
             const burnNowBtn = document.getElementById('burnNowBtn');
             const burnSpeedSpan = document.getElementById('burnSpeed');
-            
+
             if (!pw) {
                 alert("请输入解密密码");
                 return;
             }
-            
+
             try {
                 unlockBtn.innerText = "解密中...";
                 unlockBtn.disabled = true;
-                
+
                 const res = await fetch(`${API_URL}/api/share/${shareId}`);
                 if (!res.ok) {
                     alert("链接已失效或内容已被焚毁");
                     return;
                 }
-                
-                const data = await res.json(); 
+
+                const data = await res.json();
                 const clearText = await decrypt(data.content, pw);
-                
-                if (clearText) { 
+
+                if (clearText) {
                     // 存储原始内容
                     originalContent = clearText;
-                    
+
                     // 渲染Markdown内容 - 使用与编辑模式预览相同的渲染方式
                     const burningContentDiv = document.getElementById('burningContent');
                     burningContentDiv.innerHTML = marked.parse(clearText);
-                    
+
+                    // ===== 新增：为所有Markdown渲染的链接添加新窗口打开 =====
+                    burningContentDiv.querySelectorAll('a').forEach(a => {
+                        if (!a.hasAttribute('target')) {
+                            a.setAttribute('target', '_blank');
+                            a.setAttribute('rel', 'noopener noreferrer');
+                        }
+                    });
+
                     // 高亮代码块 - 使用与编辑模式预览相同的设置
                     hljs.highlightAll();
-                    
+
                     // 显示结果容器
-                    resDiv.classList.remove('hidden'); 
-                    
+                    resDiv.classList.remove('hidden');
+
                     // 更新按钮状态
                     unlockBtn.innerText = "数据已解密";
                     unlockBtn.classList.remove('share-gradient');
                     unlockBtn.classList.add('bg-gray-600', 'cursor-not-allowed');
-                    
-                    // ===== 新增：启动防截图/录屏防护 =====
+
+                    // ===== 启动防截图/录屏防护（仅保留窗口模糊、快捷键拦截，无水印）=====
                     applyAntiScreenshotProtection();
-                    
+
                     // 准备焚毁动画（顺序焚毁）
                     prepareSequentialBurnAnimation();
-                    
+
                     // 更新字符统计
                     totalChars = burningChars.length;
                     charsBurnedSpan.textContent = "0";
@@ -2939,26 +3015,26 @@ console.log('Hello');
                     burnPercentageSpan.textContent = "0%";
                     burnProgressBar.style.width = "0%";
                     burnSpeedSpan.textContent = "速度: 中";
-                    
+
                     // 重置焚毁状态
                     isBurningActive = false;
                     burnTimeLeft = 10;
                     currentCharIndex = 0;
-                    
+
                     // 启动倒计时
                     burnTimerDiv.classList.remove('hidden');
                     startBurnCountdown();
-                    
+
                     // 重新启用焚毁按钮
                     burnNowBtn.disabled = false;
                     burnNowBtn.innerHTML = `<i class="fas fa-fire"></i><span>立即焚毁</span>`;
-                    
+
                 } else {
                     alert("密码错误");
                     unlockBtn.innerText = "解密并销毁";
                     unlockBtn.disabled = false;
                 }
-            } catch (e) { 
+            } catch (e) {
                 console.error("解密失败:", e);
                 alert("网络异常或解密失败");
                 unlockBtn.innerText = "解密并销毁";
@@ -2970,10 +3046,10 @@ console.log('Hello');
         function prepareSequentialBurnAnimation() {
             const contentDiv = document.getElementById('burningContent');
             const textNodes = [];
-            
+
             // 清空之前的焚毁字符
             burningChars = [];
-            
+
             // 获取所有文本节点
             function getTextNodes(node) {
                 if (node.nodeType === 3) { // 文本节点
@@ -2986,14 +3062,14 @@ console.log('Hello');
                     }
                 }
             }
-            
+
             getTextNodes(contentDiv);
-            
+
             // 将文本节点拆分为字符并包装
             textNodes.forEach(node => {
                 const text = node.textContent;
                 const parent = node.parentNode;
-                
+
                 if (parent && text.trim()) {
                     const chars = text.split('');
                     const charSpans = chars.map((char, index) => {
@@ -3003,18 +3079,18 @@ console.log('Hello');
                         span.dataset.charIndex = burningChars.length + index; // 设置字符索引
                         return span;
                     });
-                    
+
                     const wrapper = document.createElement('span');
                     wrapper.className = 'burning-text';
                     charSpans.forEach(span => wrapper.appendChild(span));
-                    
+
                     parent.replaceChild(wrapper, node);
-                    
+
                     // 按顺序添加到焚毁列表
                     charSpans.forEach(span => burningChars.push(span));
                 }
             });
-            
+
             console.log(`准备焚毁 ${burningChars.length} 个字符（顺序焚毁）`);
         }
 
@@ -3023,15 +3099,15 @@ console.log('Hello');
             if (burnCountdownInterval) {
                 clearInterval(burnCountdownInterval);
             }
-            
+
             burnTimeLeft = 10;
             const timeLeftSpan = document.getElementById('timeLeft');
             const burnTimerDiv = document.getElementById('burnTimer');
-            
+
             burnCountdownInterval = setInterval(() => {
                 burnTimeLeft--;
                 timeLeftSpan.textContent = burnTimeLeft;
-                
+
                 if (burnTimeLeft <= 0) {
                     clearInterval(burnCountdownInterval);
                     burnTimerDiv.classList.add('hidden');
@@ -3043,25 +3119,25 @@ console.log('Hello');
         // 开始顺序焚毁动画
         function startSequentialBurnAnimation() {
             if (isBurningActive || burningChars.length === 0) return;
-            
+
             isBurningActive = true;
             const burnNowBtn = document.getElementById('burnNowBtn');
             burnNowBtn.disabled = true;
             burnNowBtn.innerHTML = `<i class="fas fa-fire animate-spin"></i><span>焚毁中...</span>`;
-            
+
             const burnTimerDiv = document.getElementById('burnTimer');
             burnTimerDiv.classList.add('hidden');
-            
+
             const charsBurnedSpan = document.getElementById('charsBurned');
             const totalCharsSpan = document.getElementById('totalChars');
             const burnPercentageSpan = document.getElementById('burnPercentage');
             const burnProgressBar = document.getElementById('burnProgressBar');
             const burnSpeedSpan = document.getElementById('burnSpeed');
-            
+
             totalChars = burningChars.length;
             let burnedChars = 0;
             currentCharIndex = 0;
-            
+
             // 根据内容长度调整焚毁速度
             let burnDelay;
             if (totalChars < 100) {
@@ -3074,13 +3150,13 @@ console.log('Hello');
                 burnDelay = 100; // 长内容，较快速度
                 burnSpeedSpan.textContent = "速度: 快";
             }
-            
+
             // 创建焚毁通知
             showBurnNotification();
-            
+
             // 创建焚毁光标
             createBurnCursor();
-            
+
             // 开始顺序焚毁
             burningInterval = setInterval(() => {
                 if (currentCharIndex >= burningChars.length) {
@@ -3089,41 +3165,41 @@ console.log('Hello');
                     completeBurnAnimation();
                     return;
                 }
-                
+
                 // 焚毁当前字符
                 const charSpan = burningChars[currentCharIndex];
                 if (charSpan) {
                     // 创建火焰轨迹效果
                     createFireTrail(charSpan);
-                    
+
                     // 高亮当前正在焚毁的字符
                     charSpan.classList.add('current-burning');
-                    
+
                     // 稍后开始焚毁动画
                     setTimeout(() => {
                         charSpan.classList.add('char-burning');
-                        
+
                         // 再稍后完全移除
                         setTimeout(() => {
                             charSpan.classList.add('char-removed');
                             charSpan.classList.remove('current-burning');
                         }, 300);
                     }, 100);
-                    
+
                     burnedChars++;
                     currentCharIndex++;
-                    
+
                     // 更新进度
                     const progress = Math.round((burnedChars / totalChars) * 100);
                     const remainingProgress = 100 - progress;
-                    
+
                     charsBurnedSpan.textContent = burnedChars;
                     burnPercentageSpan.textContent = `${progress}%`;
                     burnProgressBar.style.width = `${progress}%`;
-                    
+
                     // 更新焚毁通知
                     updateBurnNotification(progress);
-                    
+
                     // 更新焚毁光标位置
                     updateBurnCursor();
                 }
@@ -3133,27 +3209,27 @@ console.log('Hello');
         // 创建火焰轨迹效果
         function createFireTrail(charSpan) {
             const rect = charSpan.getBoundingClientRect();
-            
+
             // 创建多个火焰粒子形成轨迹
             const particleCount = Math.floor(Math.random() * 2) + 2; // 2-3个粒子
-            
+
             for (let i = 0; i < particleCount; i++) {
                 const fire = document.createElement('div');
                 fire.className = 'fire-trail';
-                
+
                 // 随机方向偏移
                 const offsetX = (Math.random() - 0.5) * 15;
                 const offsetY = Math.random() * -15 - 5;
-                
+
                 // 设置CSS变量
                 fire.style.setProperty('--tx', `${offsetX}px`);
                 fire.style.setProperty('--ty', `${offsetY}px`);
-                
+
                 fire.style.left = `${rect.left + rect.width / 2}px`;
                 fire.style.top = `${rect.top + rect.height / 2}px`;
-                
+
                 document.body.appendChild(fire);
-                
+
                 // 动画结束后移除
                 setTimeout(() => {
                     if (fire.parentNode) {
@@ -3169,14 +3245,14 @@ console.log('Hello');
             if (burnCursor) {
                 burnCursor.remove();
             }
-            
+
             burnCursor = document.createElement('div');
             burnCursor.className = 'burn-cursor';
             burnCursor.id = 'burnCursor';
-            
+
             const contentDiv = document.getElementById('burningContent');
             contentDiv.appendChild(burnCursor);
-            
+
             // 初始化光标位置
             updateBurnCursor();
         }
@@ -3189,12 +3265,12 @@ console.log('Hello');
                 }
                 return;
             }
-            
+
             const charSpan = burningChars[currentCharIndex];
             if (charSpan) {
                 const rect = charSpan.getBoundingClientRect();
                 const contentRect = document.getElementById('burningContent').getBoundingClientRect();
-                
+
                 // 计算相对位置
                 burnCursor.style.left = `${rect.left - contentRect.left}px`;
                 burnCursor.style.top = `${rect.top - contentRect.top}px`;
@@ -3205,21 +3281,21 @@ console.log('Hello');
 
         // 完成焚毁动画
         function completeBurnAnimation() {
-            // ===== 新增：焚毁完成，移除防截图防护 =====
+            // ===== 焚毁完成，移除防截图防护 =====
             removeAntiScreenshotProtection();
-            
+
             // 移除焚毁光标
             if (burnCursor) {
                 burnCursor.remove();
                 burnCursor = null;
             }
-            
+
             // 更新按钮状态
             const burnNowBtn = document.getElementById('burnNowBtn');
             burnNowBtn.innerHTML = `<i class="fas fa-check"></i><span>已焚毁</span>`;
             burnNowBtn.classList.remove('text-orange-500', 'hover:text-red-500');
             burnNowBtn.classList.add('text-gray-500');
-            
+
             // 显示完成消息
             setTimeout(() => {
                 const contentDiv = document.getElementById('burningContent');
@@ -3233,18 +3309,18 @@ console.log('Hello');
                         </div>
                     </div>
                 `;
-                
+
                 // 隐藏进度条
                 document.querySelector('.pt-4.border-t').style.display = 'none';
             }, 500);
-            
+
             // 可选：调用服务器删除接口
             try {
                 fetch(`${API_URL}/api/share/delete/${shareId}`);
             } catch (e) {
                 console.error('删除服务器数据失败:', e);
             }
-            
+
             // 隐藏焚毁通知
             hideBurnNotification();
         }
@@ -3256,7 +3332,7 @@ console.log('Hello');
             if (existingNotification) {
                 existingNotification.remove();
             }
-            
+
             const notification = document.createElement('div');
             notification.id = 'burnNotification';
             notification.className = 'burn-notification';
@@ -3267,9 +3343,9 @@ console.log('Hello');
                 </div>
                 <div class="text-xs text-white/80" id="burnNotificationProgress">0%</div>
             `;
-            
+
             document.body.appendChild(notification);
-            
+
             // 自动隐藏时间
             const autoHideTime = Math.min(15000, totalChars * 50 + 5000);
             setTimeout(() => {
@@ -3305,15 +3381,15 @@ console.log('Hello');
         // 手动触发焚毁动画
         function startBurnAnimation() {
             if (isBurningActive) return;
-            
+
             // 立即开始焚毁
             const burnTimerDiv = document.getElementById('burnTimer');
             burnTimerDiv.classList.add('hidden');
-            
+
             if (burnCountdownInterval) {
                 clearInterval(burnCountdownInterval);
             }
-            
+
             startSequentialBurnAnimation();
         }
 
@@ -3329,7 +3405,10 @@ console.log('Hello');
 
         // ==================== 快速访问功能 ====================
         function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
 
         // ==================== 初始化 ====================
@@ -3343,4 +3422,5 @@ console.log('Hello');
         document.addEventListener('DOMContentLoaded', checkSession);
     </script>
 </body>
+
 </html>
