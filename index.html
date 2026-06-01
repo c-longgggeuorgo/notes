@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/markmap-lib"></script>
+    <script src="https://cdn.jsdelivr.net/npm/markmap-view"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
@@ -641,6 +644,44 @@
             filter: blur(12px) !important;
             transition: filter 0.2s ease;
         }
+
+        #mindmapPreviewSvg .markmap-foreign,
+        #editMindmapSvg .markmap-foreign {
+            color: #e2e8f0;
+        }
+        #mindmapPreviewSvg .markmap-foreign code,
+        #editMindmapSvg .markmap-foreign code {
+            color: #f8fafc;
+            background: rgba(0,0,0,0.4);
+        }
+        #mindmapPreviewSvg .markmap-foreign a,
+        #editMindmapSvg .markmap-foreign a {
+            color: #60a5fa;
+        }
+        #mindmapPreviewSvg .markmap-node circle,
+        #editMindmapSvg .markmap-node circle {
+            stroke: #60a5fa;
+        }
+        #mindmapPreviewSvg .markmap-node circle[fill="#fff"],
+        #editMindmapSvg .markmap-node circle[fill="#fff"] {
+            fill: #1e293b;
+        }
+        #mindmapPreviewSvg .markmap-link line,
+        #editMindmapSvg .markmap-link line {
+            stroke: #475569;
+        }
+        #mindmapPreviewSvg .markmap-foreign.mindmap-editing,
+        #editMindmapSvg .markmap-foreign.mindmap-editing {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+            border-radius: 6px;
+            background: rgba(59, 130, 246, 0.12);
+            caret-color: #60a5fa;
+        }
+        #mindmapPreviewSvg .markmap-foreign.mindmap-editing *,
+        #editMindmapSvg .markmap-foreign.mindmap-editing * {
+            pointer-events: none;
+        }
     </style>
 </head>
 
@@ -744,7 +785,7 @@
     <div id="editModal"
         class="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center hidden p-4">
         <div
-            class="glass w-full max-w-4xl p-8 rounded-[2.5rem] shadow-2xl space-y-6 max-h-[95vh] overflow-hidden flex flex-col modal-enter">
+            class="glass w-full max-w-6xl p-8 rounded-[2.5rem] shadow-2xl space-y-6 max-h-[95vh] overflow-hidden flex flex-col modal-enter">
             <h2 class="text-2xl font-extrabold tracking-tight flex items-center gap-2">
                 <span class="text-blue-400">✏️</span> 编辑笔记
                 <span id="editNoteId" class="text-sm text-slate-400 ml-2 font-mono"></span>
@@ -756,66 +797,81 @@
             </div>
 
             <div class="space-y-4 flex-1 overflow-hidden flex flex-col min-h-0">
-                <div id="editTab" class="flex-1 flex flex-col min-h-0">
-                    <div class="markdown-toolbar">
-                        <button onclick="insertMarkdown('# ', '标题')" title="一级标题">
-                            <i class="fas fa-heading"></i> H1
-                        </button>
-                        <button onclick="insertMarkdown('## ', '二级标题')" title="二级标题">
-                            <i class="fas fa-heading"></i> H2
-                        </button>
-                        <button onclick="insertMarkdown('### ', '三级标题')" title="三级标题">
-                            <i class="fas fa-heading"></i> H3
-                        </button>
-                        <button onclick="insertMarkdown('**', '粗体文本')" title="粗体">
-                            <i class="fas fa-bold"></i>
-                        </button>
-                        <button onclick="insertMarkdown('*', '斜体文本')" title="斜体">
-                            <i class="fas fa-italic"></i>
-                        </button>
-                        <button onclick="insertMarkdown('~~', '删除线文本')" title="删除线">
-                            <i class="fas fa-strikethrough"></i>
-                        </button>
-                        <button onclick="insertMarkdown('- ', '列表项')" title="无序列表">
-                            <i class="fas fa-list-ul"></i>
-                        </button>
-                        <button onclick="insertMarkdown('1. ', '有序列表')" title="有序列表">
-                            <i class="fas fa-list-ol"></i>
-                        </button>
-                        <button onclick="insertMarkdown('[链接文本](https://)', '')" title="链接">
-                            <i class="fas fa-link"></i>
-                        </button>
-                        <button onclick="insertMarkdown('![替代文本](https://)', '')" title="图片">
-                            <i class="fas fa-image"></i>
-                        </button>
-                        <button onclick="insertMarkdown('> ', '引用文本')" title="引用">
-                            <i class="fas fa-quote-right"></i>
-                        </button>
-                        <button onclick="insertMarkdown('```javascript\n\n```', '代码')" title="代码块">
-                            <i class="fas fa-code"></i>
-                        </button>
-                        <button onclick="insertMarkdown('---\n', '')" title="分割线">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <button onclick="insertMarkdown('| 表头 | 表头 |\n|------|------|\n| 内容 | 内容 |', '')"
-                            title="表格">
-                            <i class="fas fa-table"></i>
-                        </button>
-                        <button onclick="insertMarkdown('- [ ] ', '任务项')" title="任务列表">
-                            <i class="fas fa-tasks"></i>
-                        </button>
+                <!-- 编辑模式：左右分栏 - 编辑器 + 实时思维导图 -->
+                <div id="editTab" class="flex-1 flex flex-row gap-4 min-h-0 overflow-hidden">
+                    <!-- 左侧：编辑器 -->
+                    <div class="flex-1 flex flex-col min-h-0 w-1/2">
+                        <div class="markdown-toolbar">
+                            <button onclick="insertMarkdown('# ', '标题')" title="一级标题">
+                                <i class="fas fa-heading"></i> H1
+                            </button>
+                            <button onclick="insertMarkdown('## ', '二级标题')" title="二级标题">
+                                <i class="fas fa-heading"></i> H2
+                            </button>
+                            <button onclick="insertMarkdown('### ', '三级标题')" title="三级标题">
+                                <i class="fas fa-heading"></i> H3
+                            </button>
+                            <button onclick="insertMarkdown('**', '粗体文本')" title="粗体">
+                                <i class="fas fa-bold"></i>
+                            </button>
+                            <button onclick="insertMarkdown('*', '斜体文本')" title="斜体">
+                                <i class="fas fa-italic"></i>
+                            </button>
+                            <button onclick="insertMarkdown('~~', '删除线文本')" title="删除线">
+                                <i class="fas fa-strikethrough"></i>
+                            </button>
+                            <button onclick="insertMarkdown('- ', '列表项')" title="无序列表">
+                                <i class="fas fa-list-ul"></i>
+                            </button>
+                            <button onclick="insertMarkdown('1. ', '有序列表')" title="有序列表">
+                                <i class="fas fa-list-ol"></i>
+                            </button>
+                            <button onclick="insertMarkdown('[链接文本](https://)', '')" title="链接">
+                                <i class="fas fa-link"></i>
+                            </button>
+                            <button onclick="insertMarkdown('![替代文本](https://)', '')" title="图片">
+                                <i class="fas fa-image"></i>
+                            </button>
+                            <button onclick="insertMarkdown('> ', '引用文本')" title="引用">
+                                <i class="fas fa-quote-right"></i>
+                            </button>
+                            <button onclick="insertMarkdown('```javascript\n\n```', '代码')" title="代码块">
+                                <i class="fas fa-code"></i>
+                            </button>
+                            <button onclick="insertMarkdown('---\n', '')" title="分割线">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button onclick="insertMarkdown('| 表头 | 表头 |\n|------|------|\n| 内容 | 内容 |', '')"
+                                title="表格">
+                                <i class="fas fa-table"></i>
+                            </button>
+                            <button onclick="insertMarkdown('- [ ] ', '任务项')" title="任务列表">
+                                <i class="fas fa-tasks"></i>
+                            </button>
+                        </div>
+
+                        <div
+                            class="flex-1 min-h-0 border border-slate-800 rounded-2xl overflow-hidden bg-slate-950/50 relative">
+                            <textarea id="editNoteContent"
+                                class="w-full h-full bg-transparent p-5 outline-none text-sm transition-all resize-none leading-relaxed font-mono min-h-[45vh] border-0"
+                                placeholder="# 标题&#10;&#10;## 二级标题&#10;&#10;- 列表项&#10;- 另一个列表项&#10;&#10;**粗体** *斜体* &#10;&#10;```javascript&#10;// 代码块&#10;console.log('Hello');&#10;```&#10;&#10;> 引用内容&#10;&#10;| 表头1 | 表头2 |&#10;|--------|--------&#10;| 单元格1 | 单元格2 |"></textarea>
+
+                            <div class="absolute bottom-3 right-4">
+                                <div class="text-xs text-slate-500 bg-slate-900/70 px-2 py-1 rounded">
+                                    <span id="editCharCount">0</span> 字符
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div
-                        class="flex-1 min-h-0 border border-slate-800 rounded-2xl overflow-hidden bg-slate-950/50 relative">
-                        <textarea id="editNoteContent"
-                            class="w-full h-full bg-transparent p-5 outline-none text-sm transition-all resize-none leading-relaxed font-mono min-h-[45vh] border-0"
-                            placeholder="# 标题&#10;&#10;## 二级标题&#10;&#10;- 列表项&#10;- 另一个列表项&#10;&#10;**粗体** *斜体* &#10;&#10;```javascript&#10;// 代码块&#10;console.log('Hello');&#10;```&#10;&#10;> 引用内容&#10;&#10;| 表头1 | 表头2 |&#10;|--------|--------|&#10;| 单元格1 | 单元格2 |"></textarea>
-
-                        <div class="absolute bottom-3 right-4">
-                            <div class="text-xs text-slate-500 bg-slate-900/70 px-2 py-1 rounded">
-                                <span id="editCharCount">0</span> 字符
-                            </div>
+                    <!-- 右侧：实时思维导图预览 -->
+                    <div class="flex-1 flex flex-col min-h-0 w-1/2">
+                        <div class="text-[10px] uppercase tracking-widest text-slate-400 font-bold ml-1 mb-2 flex items-center gap-2">
+                            <span>🧠 思维导图预览</span>
+                            <span class="text-[8px] text-slate-500 font-normal normal-case tracking-normal">实时更新</span>
+                        </div>
+                        <div class="flex-1 bg-slate-950/50 border border-slate-800 rounded-2xl overflow-hidden relative p-1">
+                            <svg id="editMindmapSvg" class="w-full h-full" style="min-height:45vh"></svg>
                         </div>
                     </div>
                 </div>
@@ -842,12 +898,6 @@
                 </button>
             </div>
 
-            <div class="pt-4 border-t border-white/5 text-xs text-slate-500">
-                <p class="flex items-center gap-2">
-                    <span class="text-yellow-400">⚠️</span>
-                    注意：编辑后笔记将使用当前主密码重新加密保存到云端
-                </p>
-            </div>
         </div>
     </div>
 
@@ -1089,6 +1139,31 @@
                     class="w-full py-3 bg-rose-900/30 text-rose-400 rounded-2xl hover:bg-rose-800/50 transition font-semibold">
                     🗑️ 删除此链接
                 </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 思维导图预览模态框 -->
+    <div id="mindmapPreviewModal"
+        class="fixed inset-0 bg-black/60 backdrop-blur-md z-50 flex items-center justify-center hidden p-2 md:p-4">
+        <div class="glass w-full max-w-6xl p-4 md:p-8 rounded-[2.5rem] shadow-2xl space-y-3 h-[95vh] flex flex-col modal-enter">
+            <div class="flex justify-between items-center shrink-0">
+                <h2 class="text-xl md:text-2xl font-extrabold tracking-tight flex items-center gap-2">
+                    <span class="text-emerald-400">🧠</span> 思维导图
+                    <span id="mindmapPreviewId" class="text-sm text-slate-400 ml-2 font-mono"></span>
+                </h2>
+                <div class="flex gap-2 items-center">
+                    <button onclick="fitMindmapPreview()" class="px-3 py-1 glass text-emerald-400 rounded-xl hover:bg-slate-700/50 transition text-sm flex items-center gap-1">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </button>
+                    <button onclick="closeMindmapPreview()" class="px-3 py-1 glass text-slate-400 rounded-xl hover:text-white transition text-sm">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex-1 min-h-0 rounded-2xl overflow-hidden" style="background:rgba(15,23,42,0.5);border:1px solid rgba(255,255,255,0.1);">
+                <svg id="mindmapPreviewSvg" style="width:100%;height:100%;"></svg>
             </div>
         </div>
     </div>
@@ -1432,10 +1507,10 @@
                         <p class="text-[10px] uppercase tracking-[0.3em] text-blue-500 font-black">端到端加密笔记 | 个人导航中心</p>
                     </div>
                     <div class="flex items-center gap-4">
-                        <div class="flex gap-2">
-                            <button onclick="switchView('notes')" class="px-4 py-2 rounded-xl ${currentView === 'notes' ? 'gradient-btn text-white' : 'glass text-slate-400'} transition">📝 笔记</button>
-                            <button onclick="switchView('nav')" class="px-4 py-2 rounded-xl ${currentView === 'nav' ? 'nav-gradient text-white' : 'glass text-slate-400'} transition">🔗 导航</button>
-                        </div>
+                    <div class="flex gap-2">
+                        <button onclick="switchView('notes')" class="px-4 py-2 rounded-xl ${currentView === 'notes' ? 'gradient-btn text-white' : 'glass text-slate-400'} transition">📝 笔记</button>
+                        <button onclick="switchView('nav')" class="px-4 py-2 rounded-xl ${currentView === 'nav' ? 'nav-gradient text-white' : 'glass text-slate-400'} transition">🔗 导航</button>
+                    </div>
                         <button onclick="logout()" class="text-xs text-slate-400 hover:text-white transition px-3 py-1 glass rounded-full" title="退出登录">
                             退出
                         </button>
@@ -2334,6 +2409,10 @@
                                 <i class="fas fa-edit"></i>
                                 <span>编辑</span>
                             </button>
+                            <button data-note-id="${n.id}" data-note-content-base64="${base64Content}" onclick="viewNoteAsMindmap(this)" class="text-xs font-black text-emerald-500 uppercase tracking-widest hover:text-emerald-400 transition flex items-center gap-1">
+                                <i class="fas fa-project-diagram"></i>
+                                <span>思维导图</span>
+                            </button>
                             <button onclick="doDelete(${n.id})" class="text-xs font-black text-rose-500 uppercase tracking-widest ml-auto opacity-40 group-hover:opacity-100 transition flex items-center gap-1">
                                 <i class="fas fa-trash"></i>
                                 <span>删除</span>
@@ -2441,6 +2520,7 @@ console.log('Hello');
                 previewTab.classList.add('hidden');
                 editTabBtn.classList.add('active');
                 previewTabBtn.classList.remove('active');
+                // 思维导图在 DOM 中保持，切 tab 不重绘
             } else {
                 editTab.classList.add('hidden');
                 previewTab.classList.remove('hidden');
@@ -2553,6 +2633,7 @@ console.log('Hello');
 
             textarea.focus();
             updateCharCount();
+            renderEditMindmap(textarea.value);
         }
 
         function updateCharCount() {
@@ -2702,18 +2783,14 @@ console.log('Hello');
             // 添加输入监听
             textarea.addEventListener('input', updateCharCount);
 
-            // 添加实时预览监听
-            textarea.addEventListener('input', function() {
-                if (!document.getElementById('previewTab').classList.contains('hidden')) {
-                    switchTab('preview');
-                }
-            });
-
             // 默认显示编辑模式
             switchTab('edit');
 
-            // 显示模态框
+            // 先显示模态框，使 SVG 有正确尺寸
             document.getElementById('editModal').classList.remove('hidden');
+
+            // 初始化实时思维导图
+            setupEditMindmap();
 
             // 聚焦到文本区域
             setTimeout(() => {
@@ -2724,6 +2801,12 @@ console.log('Hello');
         function closeEdit() {
             document.getElementById('editModal').classList.add('hidden');
             currentEditId = null;
+            if (editMindmapInstance) {
+                editMindmapInstance.destroy();
+                editMindmapInstance = null;
+                const svgEl = document.getElementById('editMindmapSvg');
+                if (svgEl) while (svgEl.firstChild) svgEl.removeChild(svgEl.firstChild);
+            }
         }
 
         async function saveEdit() {
@@ -3409,6 +3492,262 @@ console.log('Hello');
                 top: 0,
                 behavior: 'smooth'
             });
+        }
+
+        // ==================== 思维导图功能 ====================
+        let currentMindmapPreviewInstance = null;
+        let editMindmapInstance = null;
+
+        function renderMarkmapToSvg(svgEl, content, instanceHolder) {
+            if (instanceHolder && instanceHolder.value) {
+                instanceHolder.value.destroy();
+                instanceHolder.value = null;
+            }
+            while (svgEl.firstChild) svgEl.removeChild(svgEl.firstChild);
+            try {
+                const { Transformer } = window.markmap;
+                const { Markmap, loadCSS, loadJS } = window.markmap;
+                if (!Transformer || !Markmap) {
+                    showToast('思维导图库加载失败', 'error');
+                    return null;
+                }
+                const transformer = new Transformer();
+                const { root, features } = transformer.transform(content);
+                const assets = transformer.getUsedAssets(features);
+                if (assets) {
+                    if (assets.styles) loadCSS(assets.styles);
+                    if (assets.scripts) {
+                        loadJS(assets.scripts, { getMarkmap: () => window.markmap });
+                    }
+                }
+                const instance = Markmap.create(svgEl, {
+                    colorFreezeLevel: 2,
+                    duration: 500,
+                    fitRatio: 1,
+                    maxWidth: 300,
+                    style: { background: 'transparent' },
+                }, root);
+                mindmapTree = root;
+                setTimeout(attachMindmapInlineEdit, 100);
+                if (instanceHolder) instanceHolder.value = instance;
+                return instance;
+            } catch (e) {
+                console.error('Mind map render error:', e);
+                showToast('渲染失败，请检查 Markdown 格式', 'error');
+                return null;
+            }
+        }
+
+        let mindmapPreviewSourceId = null;
+        let mindmapTree = null;
+
+        function viewNoteAsMindmap(button) {
+            const id = button.getAttribute('data-note-id');
+            const base64Content = button.getAttribute('data-note-content-base64');
+            let content = null;
+            if (base64Content) {
+                try { content = base64Decode(base64Content); } catch (e) {}
+            }
+            if (!content) {
+                const note = notesCache[id];
+                if (note && note.clearText) content = note.clearText;
+            }
+            if (!content) {
+                showToast('无法获取笔记内容', 'error');
+                return;
+            }
+            mindmapPreviewSourceId = id;
+            document.getElementById('mindmapPreviewId').textContent = id ? `#${id}` : '';
+            document.getElementById('mindmapPreviewModal').classList.remove('hidden');
+            setTimeout(() => renderMindmapPreviewContent(content), 200);
+        }
+
+        function renderMindmapPreviewContent(content) {
+            const svgEl = document.getElementById('mindmapPreviewSvg');
+            const current = currentMindmapPreviewInstance;
+            if (current) {
+                try {
+                    const { Transformer } = window.markmap;
+                    const transformer = new Transformer();
+                    const { root, features } = transformer.transform(content);
+                    mindmapTree = root;
+                    current.setData({ root });
+                    setTimeout(attachMindmapInlineEdit, 100);
+                    return;
+                } catch (e) {
+                    current.destroy();
+                    currentMindmapPreviewInstance = null;
+                }
+            }
+            currentMindmapPreviewInstance = renderMarkmapToSvg(svgEl, content, { value: currentMindmapPreviewInstance });
+        }
+
+        async function renderEditMindmap(content) {
+            const svgEl = document.getElementById('editMindmapSvg');
+            if (!svgEl) return;
+            if (!content || !content.trim()) {
+                if (editMindmapInstance) {
+                    editMindmapInstance.destroy();
+                    editMindmapInstance = null;
+                }
+                while (svgEl.firstChild) svgEl.removeChild(svgEl.firstChild);
+                return;
+            }
+            const { Transformer, Markmap, loadCSS, loadJS } = window.markmap;
+            if (!Transformer || !Markmap) return;
+            const transformer = new Transformer();
+            const { root, features } = transformer.transform(content);
+            const assets = transformer.getUsedAssets(features);
+            if (assets) {
+                if (assets.styles) loadCSS(assets.styles);
+                if (assets.scripts) {
+                    loadJS(assets.scripts, { getMarkmap: () => window.markmap });
+                }
+            }
+            if (editMindmapInstance) {
+                try {
+                    await editMindmapInstance.setData(root, { duration: 0 });
+                    await editMindmapInstance.fit();
+                } catch (e) {
+                    console.error('Edit mind map update error:', e);
+                }
+                return;
+            }
+            editMindmapInstance = Markmap.create(svgEl, {
+                colorFreezeLevel: 2,
+                duration: 500,
+                fitRatio: 1,
+                maxWidth: 300,
+                style: { background: 'transparent' },
+            }, root);
+        }
+
+        let editMindmapTimer = null;
+        function onEditContentInput() {
+            if (editMindmapTimer) clearTimeout(editMindmapTimer);
+            editMindmapTimer = setTimeout(() => {
+                renderEditMindmap(document.getElementById('editNoteContent').value);
+            }, 200);
+        }
+        let editMindmapInputSetup = false;
+        function setupEditMindmap() {
+            const textarea = document.getElementById('editNoteContent');
+            if (!editMindmapInputSetup) {
+                textarea.addEventListener('input', onEditContentInput);
+                editMindmapInputSetup = true;
+            }
+            renderEditMindmap(textarea.value);
+        }
+
+        function closeMindmapPreview() {
+            if (currentMindmapPreviewInstance) {
+                currentMindmapPreviewInstance.destroy();
+                currentMindmapPreviewInstance = null;
+            }
+            document.getElementById('mindmapPreviewModal').classList.add('hidden');
+        }
+
+        function fitMindmapPreview() {
+            if (currentMindmapPreviewInstance) currentMindmapPreviewInstance.fit();
+        }
+
+        // ==================== 导图内联编辑 ====================
+        function attachMindmapInlineEdit() {
+            const svg = document.getElementById('mindmapPreviewSvg');
+            if (!svg || !mindmapTree) return;
+            const nodeEls = svg.querySelectorAll('.markmap-node');
+            let idx = 0;
+            function walk(node, path) {
+                if (idx >= nodeEls.length) return;
+                nodeEls[idx].dataset.treePath = JSON.stringify(path);
+                idx++;
+                if (node.children) {
+                    node.children.forEach((child, i) => walk(child, [...path, i]));
+                }
+            }
+            walk(mindmapTree, [0]);
+            svg.removeEventListener('dblclick', onMindmapDblClick);
+            svg.addEventListener('dblclick', onMindmapDblClick);
+        }
+
+        function onMindmapDblClick(e) {
+            const foreignDiv = e.target.closest('.markmap-foreign');
+            if (!foreignDiv) return;
+            if (foreignDiv.getAttribute('contenteditable') === 'true') return;
+            e.stopPropagation();
+            const orig = foreignDiv.textContent;
+            foreignDiv.setAttribute('data-original', orig);
+            foreignDiv.setAttribute('contenteditable', 'true');
+            foreignDiv.classList.add('mindmap-editing');
+            const range = document.createRange();
+            range.selectNodeContents(foreignDiv);
+            const sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+            let editingDone = false;
+            const done = () => {
+                if (editingDone) return;
+                editingDone = true;
+                finishMindmapEdit(foreignDiv);
+            };
+            const keydown = (ke) => {
+                if (ke.key === 'Escape') {
+                    foreignDiv.textContent = orig;
+                    done();
+                } else if (ke.key === 'Enter' && !ke.shiftKey) {
+                    ke.preventDefault();
+                    done();
+                }
+            };
+            foreignDiv.addEventListener('keydown', keydown);
+            foreignDiv.addEventListener('blur', done, { once: true });
+            foreignDiv._mindmapKeydown = keydown;
+        }
+
+        function finishMindmapEdit(div) {
+            div.removeAttribute('contenteditable');
+            div.classList.remove('mindmap-editing');
+            if (div._mindmapKeydown) {
+                div.removeEventListener('keydown', div._mindmapKeydown);
+                delete div._mindmapKeydown;
+            }
+            const newText = div.textContent;
+            const orig = div.getAttribute('data-original');
+            div.removeAttribute('data-original');
+            if (!orig || newText === orig) return;
+            const nodeG = div.closest('.markmap-node');
+            const pathStr = nodeG ? nodeG.dataset.treePath : null;
+            if (!pathStr || !mindmapTree) return;
+            const path = JSON.parse(pathStr);
+            let node = mindmapTree;
+            for (let i = 1; i < path.length; i++) {
+                if (!node.children || !node.children[path[i]]) return;
+                node = node.children[path[i]];
+            }
+            node.content = newText;
+            const md = serializeTreeToMarkdown(mindmapTree).trim();
+            if (currentMindmapPreviewInstance) {
+                currentMindmapPreviewInstance.setData({ root: mindmapTree });
+                setTimeout(attachMindmapInlineEdit, 100);
+            }
+        }
+
+        function serializeTreeToMarkdown(node, depth) {
+            if (depth === undefined) depth = 0;
+            const indent = '  '.repeat(depth);
+            let line;
+            if (depth === 0) {
+                line = `# ${node.content}`;
+            } else {
+                line = `${indent}- ${node.content}`;
+            }
+            let result = line + '\n';
+            if (node.children) {
+                for (const child of node.children) {
+                    result += serializeTreeToMarkdown(child, depth + 1);
+                }
+            }
+            return result;
         }
 
         // ==================== 初始化 ====================
